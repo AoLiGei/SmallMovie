@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+    <item
+        android:id="@+id/bb_menu_recents"
+        android:icon="@drawable/tab_02"
+        android:title="精选" />
+    <item
+        android:id="@+id/bb_menu_favorites"
+        android:icon="@drawable/tab_03"
+        android:title="专题" />
+    <item
+        android:id="@+id/bb_menu_nearby"
+        android:icon="@drawable/tab_01"
+        android:title="发现" />
+    <item
+        android:id="@+id/bb_menu_friends"
+        android:icon="@drawable/tab_04"
+        android:title="我的" />
+</menu>

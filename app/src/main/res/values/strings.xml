@@ -1,0 +1,50 @@
+<resources>
+    <string name="app_name">微影</string>
+    <string name="loading_failed">数据加载失败</string>
+    <string name="author">微影</string>
+
+    <string name="recommend">精彩推荐</string>
+    <string name="score">评分：</string>
+    <string name="videoType">类型：</string>
+    <string name="region">地区：</string>
+    <string name="airTime">上映时间：</string>
+    <string name="video_intro">简介</string>
+    <string name="video_comment">评论</string>
+    <string name="set_theme">设置主题</string>
+    <string name="theme">主题</string>
+    <string name="cancel">取消</string>
+    <string name="done">完成</string>
+
+
+    <!--mine-->
+    <string name="my_record">历史</string>
+    <string name="my_down">缓存</string>
+    <string name="my_collection">收藏</string>
+    <string name="my_them">主题</string>
+    <string name="clean">清除</string>
+    <string name="mine_title">我的</string>
+    <string name="theme_title">主题</string>
+
+    <string name="share">分享</string>
+    <string name="fuli">福利</string>
+    <string name="setting">设置</string>
+    <string name="feedback">建议反馈</string>
+    <string name="collection">我的收藏</string>
+    <string name="download">我的下载</string>
+    <string name="about">关于我们</string>
+    <string name="close">关闭</string>
+    <string name="about_me">\n博 客：<a href="http://blog.csdn.net/jiankeufo">jiankeufo</a>\n\nGithub：<a href="https://github.com/GeekGhost/Ghost">ghost</a></string>
+
+    <string name="expand">展开</string>
+    <string name="shrink">收起</string>
+
+    <string name="setting_recommend">推荐给好友</string>
+    <string name="setting_recommend_content">发现一个看片神器\n\nhttps://github.com/GeekGhost/Ghost</string>
+    <string name="setting_recommend_url">https://github.com/GeekGhost/Ghost</string>
+    <string name="setting_recommend_copy">复制</string>
+    <string name="setting_recommend_clear">清理缓存</string>
+
+    <string name="search_history">搜索记录</string>
+    <string name="search_recommend">热门推荐</string>
+
+</resources>

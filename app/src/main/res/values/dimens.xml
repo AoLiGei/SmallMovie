@@ -1,0 +1,66 @@
+<resources>
+
+    <dimen name="s_micro_text_size">8.0sp</dimen>
+    <dimen name="micro_text_size">10.0sp</dimen>
+    <dimen name="x_micro_text_size">11.0sp</dimen>
+    <!--12.0sp=20xp-->
+    <dimen name="small_text_size">12.0sp</dimen>
+    <dimen name="x_small_text_size">13.0sp</dimen>
+    <!--14.0sp=24xp-->
+    <dimen name="normal_text_size">14.0sp</dimen>
+    <!-- ???-->
+    <dimen name="x_normal_text_size">15.0sp</dimen>
+    <!--16.0sp=26px-->
+    <dimen name="middle_text_size">16.0sp</dimen>
+    <!--17.0sp=28px-->
+    <dimen name="x_middle_text_size">17.0sp</dimen>
+    <!--18.0sp=30px-->
+    <dimen name="big_text_size">18.0sp</dimen>
+    <!--19.0sp=32px-->
+    <dimen name="x_big_text_size">19.0sp</dimen>
+    <!--20.0sp=34px-->
+    <dimen name="large_text_size">20.0sp</dimen>
+    <dimen name="xx_large_text_size">22.0sp</dimen>
+    <!--26sp=40px-->
+    <dimen name="xxx_large_text_size">26.0sp</dimen>
+
+    <!--28sp==48px-->
+    <dimen name="more_large_text_size">28sp</dimen>
+    <!--30sp==50px-->
+    <dimen name="most_large_text_size">30sp</dimen>
+
+    <dimen name="less_huge_text_size">32sp</dimen>
+    <dimen name="huge_text_size">42sp</dimen>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <!--margin-->
+    <dimen name="standard_x_big_margin">34dp</dimen>
+    <dimen name="standard_big_margin">32dp</dimen>
+    <dimen name="standard_s_big_margin">30dp</dimen>
+    <dimen name="standard_xxx_margin">24dp</dimen>
+    <dimen name="standard_xx_margin">22dp</dimen>
+    <dimen name="standard_x_margin">20dp</dimen>
+    <dimen name="standard_xs_margin">18dp</dimen>
+    <dimen name="standard_margin">16dp</dimen>
+    <dimen name="standard_x_middle_margin">14dp</dimen>
+    <dimen name="standard_middle_margin">12dp</dimen>
+    <dimen name="standard_x_small_margin">10dp</dimen>
+    <dimen name="standard_small_margin">8dp</dimen>
+    <dimen name="standard_xs_small_margin">6dp</dimen>
+    <dimen name="standard_s_small_margin">4dp</dimen>
+    <dimen name="standard_ss_small_margin">2dp</dimen>
+    <dimen name="standard_sss_small_margin">1dp</dimen>
+
+    <dimen name="tab_height">40dp</dimen>
+    <dimen name="default_circle_view_size">200dp</dimen>
+    <dimen name="min_margin_left">40dp</dimen>
+    <dimen name="min_margin_right">30dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+
+    <dimen name="title_bar_height">48dp</dimen>
+
+
+</resources>
