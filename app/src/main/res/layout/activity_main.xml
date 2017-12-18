@@ -12,37 +12,42 @@
            <LinearLayout
                android:layout_width="match_parent"
                android:layout_height="wrap_content"
+               android:layout_centerVertical="true"
                android:orientation="vertical"
+               android:paddingTop="160dp"
+               android:paddingLeft="15dp"
                android:background="@mipmap/bg_blue">
-
-
                <TextView
-                   android:id="@+id/tv_collect"
+                   android:id="@+id/main_tv_collect"
                    style="@style/MenuStyle"
                    android:text="@string/collection" />
 
                <TextView
-                   android:id="@+id/tv_mydown"
+                   android:id="@+id/main_tv_mydown"
                    style="@style/MenuStyle"
                    android:text="@string/download" />
 
                <TextView
-                   android:id="@+id/tv_fuli"
+                   android:id="@+id/main_tv_fuli"
                    style="@style/MenuStyle"
                    android:text="@string/fuli" />
 
                <TextView
-                   android:id="@+id/tv_share"
+                   android:id="@+id/main_tv_share"
                    style="@style/MenuStyle"
                    android:text="@string/share" />
 
                <TextView
-                   android:id="@+id/tv_feedback"
+                   android:id="@+id/main_tv_feedback"
                    style="@style/MenuStyle"
                    android:text="@string/feedback" />
+               <TextView
+                   android:id="@+id/main_tv_vr"
+                   style="@style/MenuStyle"
+                   android:text="@string/vr" />
 
                <TextView
-                   android:id="@+id/tv_setting"
+                   android:id="@+id/main_tv_setting"
                    style="@style/MenuStyle"
                    android:text="@string/setting" />
 

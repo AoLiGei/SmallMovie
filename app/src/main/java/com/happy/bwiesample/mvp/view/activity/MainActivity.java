@@ -1,7 +1,9 @@
 package com.happy.bwiesample.mvp.view.activity;
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.view.View;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
@@ -22,6 +24,7 @@ public class MainActivity extends BaseActivity{
     private FragmentManager fm;
     private List<Fragment> fragments;
     private TextView main_title;
+    private TextView main_tv_vr;
 
     @Override
     public int setLayout() {
@@ -38,6 +41,16 @@ public class MainActivity extends BaseActivity{
 
         main_rg = findViewById(R.id.main_rg);
         main_title = findViewById(R.id.main_title);
+        main_tv_vr = findViewById(R.id.main_tv_vr);
+
+        main_tv_vr.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //TODO
+
+                startActivity(new Intent(MainActivity.this,VRActivity.class));
+            }
+        });
         fm = getSupportFragmentManager();
         fragments=new ArrayList<>();
         fragments.add(new JXFragment());
