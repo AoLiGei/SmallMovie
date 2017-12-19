@@ -1,6 +1,7 @@
 package com.happy.bwiesample.mvp.view;
 
 import com.happy.bwiesample.entry.VrImageItem;
+import com.happy.bwiesample.entry.VrVideoBean;
 
 import java.util.List;
 
@@ -15,4 +16,5 @@ public interface VRView {
     //展示vr图片列表页
 
     void showVrImg(List<VrImageItem> datas);
+    void showVrVideo(List<VrVideoBean.ContentBean> datas);
 }
