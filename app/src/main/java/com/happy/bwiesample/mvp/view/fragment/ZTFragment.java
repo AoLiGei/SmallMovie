@@ -2,8 +2,12 @@ package com.happy.bwiesample.mvp.view.fragment;
 
 import com.happy.bwiesample.R;
 import com.happy.bwiesample.base.BaseMvpFragment;
+import com.happy.bwiesample.entry.VideoType;
 import com.happy.bwiesample.mvp.presenter.JXPresenter;
-import com.happy.bwiesample.mvp.view.JXView;
+import com.happy.bwiesample.mvp.presenter.ZTPresenter;
+import com.happy.bwiesample.mvp.view.ZTView;
+
+import java.util.List;
 
 /**
  * @Describtion
@@ -12,7 +16,7 @@ import com.happy.bwiesample.mvp.view.JXView;
  * @Time 19:11
  */
 
-public class ZTFragment extends BaseMvpFragment<JXPresenter> implements JXView {
+public class ZTFragment extends BaseMvpFragment<ZTPresenter> implements ZTView {
     @Override
     public int setLayout() {
         return R.layout.fragment_zt;
@@ -24,4 +28,8 @@ public class ZTFragment extends BaseMvpFragment<JXPresenter> implements JXView {
         getFragmentComponent().inject(this);
     }
 
+    @Override
+    public void showZTList(List<VideoType> typeList) {
+
+    }
 }

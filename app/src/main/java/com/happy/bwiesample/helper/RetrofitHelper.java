@@ -21,6 +21,7 @@ public class RetrofitHelper {
     private Object VideoObject=new Object();
     private Retrofit GanksRetrofit;
     private Object ganksObject=new Object();
+
     public Retrofit getVideoRetrofitInstance(){
         if(videoRetrofit==null){
             synchronized (VideoObject){
