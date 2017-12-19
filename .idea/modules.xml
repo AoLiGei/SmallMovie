@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/BwieSample.iml" filepath="$PROJECT_DIR$/BwieSample.iml" />
+      <module fileurl="file://D:\MyWorkspaces\android_tarining2\SmallMovie\BwieSample.iml" filepath="D:\MyWorkspaces\android_tarining2\SmallMovie\BwieSample.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SmallMovie.iml" filepath="$PROJECT_DIR$/SmallMovie.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

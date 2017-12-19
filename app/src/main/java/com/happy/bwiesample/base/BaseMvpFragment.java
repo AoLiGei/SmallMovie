@@ -16,7 +16,7 @@ import javax.inject.Inject;
  */
 
 public abstract class BaseMvpFragment<P extends BasePresenter> extends Fragment {
-    private View view;
+    public View view;
     @Inject
     public P p;
     @Nullable
