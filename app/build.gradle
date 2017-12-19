@@ -52,5 +52,7 @@ dependencies {
     implementation project(':videowidget')
     compile 'com.google.protobuf.nano:protobuf-javanano:3.0.0-alpha-7'
     compile 'com.google.android.exoplayer:exoplayer:r1.5.10'
+    compile 'com.youth.banner:banner:1.4.10'
+
 
 }
