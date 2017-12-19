@@ -10,7 +10,7 @@
         android:layout_height="76dp"
         android:background="@color/colorBluePrimary"
         >
-        
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

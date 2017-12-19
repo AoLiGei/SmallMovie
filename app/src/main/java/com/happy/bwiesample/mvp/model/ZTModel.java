@@ -27,6 +27,6 @@ public class ZTModel {
     }
 
     public Flowable<VideoHttpResponse<VideoRes>>getTypeData(){
-        return helper.getVideoRetrofitInstance().create(IVideo.class).getHomePage();
+        return null;
     }
 }

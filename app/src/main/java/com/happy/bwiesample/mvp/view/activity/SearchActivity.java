@@ -9,9 +9,10 @@ import android.widget.TextView;
 
 import com.happy.bwiesample.R;
 import com.happy.bwiesample.base.BaseMvpActivity;
+import com.happy.bwiesample.mvp.presenter.SearchPresenter;
 import com.happy.bwiesample.mvp.view.SearchView;
 
-public class SearchActivity extends BaseMvpActivity implements View.OnClickListener,SearchView{
+public class SearchActivity extends BaseMvpActivity<SearchPresenter> implements View.OnClickListener,SearchView{
 
     private EditText edt_search;
     private ImageView img_clear;
