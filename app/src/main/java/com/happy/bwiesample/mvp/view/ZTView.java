@@ -1,5 +1,9 @@
 package com.happy.bwiesample.mvp.view;
 
+import com.happy.bwiesample.entry.VideoType;
+
+import java.util.List;
+
 /**
  * @Describtion
  * @Author LiAng
@@ -8,4 +12,5 @@ package com.happy.bwiesample.mvp.view;
  */
 
 public interface ZTView {
+    void showZTList(List<VideoType>typeList);
 }

@@ -3,7 +3,7 @@ package com.happy.bwiesample.mvp.view.fragment;
 import com.happy.bwiesample.R;
 import com.happy.bwiesample.base.BaseMvpFragment;
 import com.happy.bwiesample.mvp.presenter.JXPresenter;
-import com.happy.bwiesample.mvp.view.JXView;
+import com.happy.bwiesample.mvp.view.ZTView;
 
 /**
  * @Describtion
@@ -12,7 +12,7 @@ import com.happy.bwiesample.mvp.view.JXView;
  * @Time 19:11
  */
 
-public class ZTFragment extends BaseMvpFragment<JXPresenter> implements JXView {
+public class ZTFragment extends BaseMvpFragment<JXPresenter> implements ZTView {
     @Override
     public int setLayout() {
         return R.layout.fragment_zt;

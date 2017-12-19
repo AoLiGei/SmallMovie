@@ -78,9 +78,11 @@ public class MainActivity extends BaseActivity{
                         showFragment(0);
                         break;
                     case R.id.main_rb_2:
+
                         showFragment(1);
                         break;
                     case R.id.main_rb_3:
+
                         showFragment(2);
                         break;
                     case R.id.main_rb_4:
