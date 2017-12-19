@@ -7,10 +7,9 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".mvp.view.activity.VRActivity">
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="vrvideo"/>
-
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/vrvideo_rcView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </android.support.v7.widget.RecyclerView>
 </LinearLayout>

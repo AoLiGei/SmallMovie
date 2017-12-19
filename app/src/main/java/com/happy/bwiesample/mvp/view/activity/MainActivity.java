@@ -23,7 +23,6 @@ public class MainActivity extends BaseActivity{
     private RadioGroup main_rg;
     private FragmentManager fm;
     private List<Fragment> fragments;
-    private TextView main_title;
     private TextView main_tv_vr;
 
     @Override
@@ -46,6 +45,7 @@ public class MainActivity extends BaseActivity{
             @Override
             public void onClick(View v) {
                 //TODO
+
 
                 startActivity(new Intent(MainActivity.this,VRActivity.class));
             }
