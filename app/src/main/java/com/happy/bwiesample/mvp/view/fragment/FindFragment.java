@@ -28,6 +28,6 @@ public class FindFragment extends BaseMvpFragment<FindPresenter> implements Find
     }
     @Override
     public void success(VideoHttpResponse<VideoRes> videoResVideoHttpResponse) {
-        
+
     }
 }
