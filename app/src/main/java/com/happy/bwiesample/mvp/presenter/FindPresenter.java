@@ -24,9 +24,6 @@ public class FindPresenter extends BasePresenter<FindView,FindModel>{
     @Inject
     FindModel findModel;
 
-
-
-
     public void showData(){
         findModel.getFindData(new FindModel.SetFindDataListener() {
             @Override

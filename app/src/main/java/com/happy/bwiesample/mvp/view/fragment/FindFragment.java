@@ -3,6 +3,7 @@ package com.happy.bwiesample.mvp.view.fragment;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -23,6 +24,7 @@ import com.happy.bwiesample.wigdet.OverLayCardLayoutManager;
 import com.happy.bwiesample.wigdet.RenRenCallback;
 
 import java.util.List;
+import java.util.ListIterator;
 
 /**
  * @Describtion
@@ -63,7 +65,7 @@ public class FindFragment extends BaseMvpFragment<FindPresenter> implements Find
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                recyclerView.setVisibility(View.GONE);
                 p.showData();
                 recyclerView.getAdapter().notifyDataSetChanged();
 
@@ -101,12 +103,16 @@ public class FindFragment extends BaseMvpFragment<FindPresenter> implements Find
             }
         });
         new ItemTouchHelper(callback).attachToRecyclerView(recyclerView);
+
+
     }
 
     @Override
     public void success(VideoHttpResponse<VideoRes> videoResVideoHttpResponse) {
+
         VideoRes ret = videoResVideoHttpResponse.getRet();
         mDatas = ret.list;
+        recyclerView.setVisibility(View.VISIBLE);
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
@@ -132,6 +138,7 @@ public class FindFragment extends BaseMvpFragment<FindPresenter> implements Find
 
             final View view = LayoutInflater.from(getActivity()).inflate(R.layout.item_renren_layout, parent, false);
             final MyViewHolder myViewHolder = new MyViewHolder(view);
+
             return myViewHolder;
         }
 
