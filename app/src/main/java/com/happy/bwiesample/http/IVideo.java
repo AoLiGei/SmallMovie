@@ -1,5 +1,6 @@
 package com.happy.bwiesample.http;
 
+import com.happy.bwiesample.entry.RecommendBean;
 import com.happy.bwiesample.entry.VideoHttpResponse;
 import com.happy.bwiesample.entry.VideoRes;
 
@@ -22,7 +23,7 @@ public interface IVideo {
      * @return
      */
     @GET("homePageApi/homePage.do")
-    Flowable<VideoHttpResponse<VideoRes>> getHomePage();
+    Flowable<RecommendBean> getHomePage();
 
     /**
      * 影片详情
@@ -60,4 +61,5 @@ public interface IVideo {
      */
     @GET("Commentary/getCommentList.do")
     Flowable<VideoHttpResponse<VideoRes>> getCommentList(@Query("mediaId") String mediaId, @Query("pnum") String pnum);
+
 }

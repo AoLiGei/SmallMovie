@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -10,4 +10,28 @@
 
 
 
-</LinearLayout>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recommend_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/recommend_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="71dp"
+        android:visibility="gone"
+        >
+
+        <TextView
+            android:text="精选"
+            android:id="@+id/recommend_title"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:layout_marginTop="15dp"
+            />
+
+    </android.support.v7.widget.Toolbar>
+
+</FrameLayout>

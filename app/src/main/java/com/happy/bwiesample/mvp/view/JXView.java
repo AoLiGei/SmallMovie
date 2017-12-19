@@ -1,5 +1,7 @@
 package com.happy.bwiesample.mvp.view;
 
+import com.happy.bwiesample.entry.RecommendBean;
+
 /**
  * @Describtion
  * @Author LiAng
@@ -8,4 +10,6 @@ package com.happy.bwiesample.mvp.view;
  */
 
 public interface JXView {
+
+    void setVideoData(RecommendBean bean);
 }

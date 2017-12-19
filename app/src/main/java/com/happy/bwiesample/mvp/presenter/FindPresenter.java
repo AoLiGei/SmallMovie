@@ -1,6 +1,8 @@
 package com.happy.bwiesample.mvp.presenter;
 
 import com.happy.bwiesample.base.BasePresenter;
+import com.happy.bwiesample.entry.VideoHttpResponse;
+import com.happy.bwiesample.entry.VideoRes;
 import com.happy.bwiesample.mvp.model.FindModel;
 import com.happy.bwiesample.mvp.view.FindView;
 
@@ -17,5 +19,17 @@ public class FindPresenter extends BasePresenter<FindView,FindModel>{
     @Inject
     public FindPresenter(){
         
+    }
+
+    @Inject
+    FindModel findModel;
+
+    public void showData(){
+        findModel.getFindData(new FindModel.SetFindDataListener() {
+            @Override
+            public void findData(VideoHttpResponse<VideoRes> videoResVideoHttpResponse) {
+                getView().success(videoResVideoHttpResponse);
+            }
+        });
     }
 }

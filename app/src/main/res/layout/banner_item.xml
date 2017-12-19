@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+
+
+
+    <com.youth.banner.Banner
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:id="@+id/recommend_banner"
+        ></com.youth.banner.Banner>
+
+    <include layout="@layout/search_layout"
+        android:layout_gravity="center_horizontal"
+        />
+
+</FrameLayout>

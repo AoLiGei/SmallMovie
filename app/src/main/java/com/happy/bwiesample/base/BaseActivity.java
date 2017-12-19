@@ -1,15 +1,11 @@
 package com.happy.bwiesample.base;
 
-import android.app.Activity;
+import android.content.Intent;
 import android.os.Build;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Window;
 import android.view.WindowManager;
-
-import com.happy.bwiesample.R;
-import com.happy.bwiesample.di.component.ActivityComponent;
-import com.happy.bwiesample.di.component.DaggerActivityComponent;
 
 public abstract class BaseActivity extends AppCompatActivity {
 
@@ -48,11 +44,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     }
     public void initData(){
-
+        Intent intent = getIntent();
     }
-
-
-
-
 
 }

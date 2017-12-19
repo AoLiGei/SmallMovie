@@ -1,5 +1,8 @@
 package com.happy.bwiesample.mvp.view;
 
+import com.happy.bwiesample.entry.VideoHttpResponse;
+import com.happy.bwiesample.entry.VideoRes;
+
 /**
  * @Describtion
  * @Author LiAng
@@ -8,4 +11,8 @@ package com.happy.bwiesample.mvp.view;
  */
 
 public interface FindView {
+
+    void success(VideoHttpResponse<VideoRes> videoResVideoHttpResponse);
+
+
 }

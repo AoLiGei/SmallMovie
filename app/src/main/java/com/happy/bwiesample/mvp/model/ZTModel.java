@@ -23,7 +23,7 @@ public class ZTModel {
 
     @Inject
     public ZTModel(){
-        
+
     }
 
     public Flowable<VideoHttpResponse<VideoRes>>getTypeData(){
