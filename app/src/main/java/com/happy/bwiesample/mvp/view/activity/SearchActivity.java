@@ -2,17 +2,24 @@ package com.happy.bwiesample.mvp.view.activity;
 
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.happy.bwiesample.R;
-import com.happy.bwiesample.base.BaseActivity;
+import com.happy.bwiesample.base.BaseMvpActivity;
 
-public class SearchActivity extends BaseActivity {
+public class SearchActivity extends BaseMvpActivity implements View.OnClickListener{
 
     private EditText edt_search;
     private ImageView img_clear;
-    private String text;
+    private TextView tv_operate;
+
+    @Override
+    public void inject() {
+        getActivityComponent().inject(this);
+    }
 
     @Override
     public int setLayout() {
@@ -22,10 +29,11 @@ public class SearchActivity extends BaseActivity {
     @Override
     public void initView() {
         super.initView();
+        tv_operate = findViewById(R.id.tv_operate);
         img_clear = findViewById(R.id.img_clear);
+        img_clear.setOnClickListener(this);
         edt_search = findViewById(R.id.edt_search);
         edt_search.addTextChangedListener(textWatcher);
-        text = edt_search.getText().toString();
 
 
     }
@@ -49,7 +57,22 @@ public class SearchActivity extends BaseActivity {
         }
         @Override
         public void afterTextChanged(Editable s) {
-
+            if (s.length() > 0){
+                img_clear.setVisibility(View.VISIBLE);
+                tv_operate.setText("搜索");
+            }else {
+                img_clear.setVisibility(View.GONE);
+                tv_operate.setText("取消");
+            }
         }
     };
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.img_clear:
+                edt_search.getText().clear();
+                break;
+        }
+    }
 }

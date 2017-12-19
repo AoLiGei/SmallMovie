@@ -108,7 +108,15 @@
             android:layout_marginTop="10dp"
             android:text="@string/search_recommend" />
 
-
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/search_recycler"
+            android:layout_below="@+id/tv_recommed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/standard_margin"
+            android:layout_marginRight="@dimen/standard_x_big_margin"
+            android:layout_marginTop="10dp"
+            ></android.support.v7.widget.RecyclerView>
     </RelativeLayout>
 
 
