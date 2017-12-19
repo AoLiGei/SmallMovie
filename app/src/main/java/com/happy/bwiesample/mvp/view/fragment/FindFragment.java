@@ -85,7 +85,7 @@ public class FindFragment extends BaseMvpFragment<FindPresenter> implements Find
                 } else {
                     mDatas.remove(adapterPosition);
                 }
-                recyclerView.getAdapter().notifyDataSetChanged();
+                recyclerView.getAdapter().notifyDataSetChanged(); 
             }
 
             @Override
