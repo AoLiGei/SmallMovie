@@ -41,6 +41,7 @@
         app:dividerPadding="40dp"
         app:showDividers="middle|end">
 
+        
         <RelativeLayout
             android:id="@+id/rl_record"
             style="@style/mine_lin_style"
