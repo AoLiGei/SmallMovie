@@ -9,8 +9,9 @@ import android.widget.TextView;
 
 import com.happy.bwiesample.R;
 import com.happy.bwiesample.base.BaseMvpActivity;
+import com.happy.bwiesample.mvp.view.SearchView;
 
-public class SearchActivity extends BaseMvpActivity implements View.OnClickListener{
+public class SearchActivity extends BaseMvpActivity implements View.OnClickListener,SearchView{
 
     private EditText edt_search;
     private ImageView img_clear;
@@ -74,5 +75,10 @@ public class SearchActivity extends BaseMvpActivity implements View.OnClickListe
                 edt_search.getText().clear();
                 break;
         }
+    }
+
+    @Override
+    public String getEditText() {
+        return edt_search.getText().toString();
     }
 }
