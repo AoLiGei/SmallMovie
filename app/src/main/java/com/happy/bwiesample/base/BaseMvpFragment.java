@@ -27,6 +27,8 @@ public abstract class BaseMvpFragment<P extends BasePresenter> extends Fragment 
             inject();
             p.attachView(this);
             initView();
+
+
         }
         return view;
     }

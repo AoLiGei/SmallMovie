@@ -1,5 +1,6 @@
 package com.happy.bwiesample.base;
 
+import android.app.Activity;
 import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -19,7 +20,6 @@ public abstract class BaseActivity extends AppCompatActivity {
         setContentView(setLayout());
         setSystemBarTransparent(true);
         initView();
-        initData();
     }
 
 

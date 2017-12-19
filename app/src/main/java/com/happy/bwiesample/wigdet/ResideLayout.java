@@ -327,7 +327,7 @@ public class ResideLayout extends ViewGroup {
         if (ViewCompat.isOpaque(v)) return true;
 
         // View#isOpaque didn't take all valid opaque scrollbar modes into account
-        // before API 18 (JB-MR2). On newer devices rely solely on isOpaque above and return false
+        // before API 18 (JB-MR2). On newer devices rely solely on isOpaque above and iv_return false
         // here. On older devices, check the view's background drawable directly as a fallback.
         if (Build.VERSION.SDK_INT >= 18) return false;
 

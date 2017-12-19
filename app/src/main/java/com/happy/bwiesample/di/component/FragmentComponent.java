@@ -6,6 +6,8 @@ import com.happy.bwiesample.di.scope.FragmentScope;
 import com.happy.bwiesample.mvp.view.fragment.FindFragment;
 import com.happy.bwiesample.mvp.view.fragment.JXFragment;
 import com.happy.bwiesample.mvp.view.fragment.MineFragment;
+import com.happy.bwiesample.mvp.view.fragment.VRImgFragment;
+import com.happy.bwiesample.mvp.view.fragment.VRVideoFragment;
 import com.happy.bwiesample.mvp.view.fragment.ZTFragment;
 
 import dagger.Component;
@@ -25,6 +27,8 @@ public abstract class FragmentComponent {
     public abstract void inject(ZTFragment ztFragment);
     public abstract void inject(FindFragment findFragment);
     public abstract void inject(MineFragment mineFragment);
+    public abstract void inject(VRImgFragment vrImgFragment);
+    public abstract void inject(VRVideoFragment vrVideoFragment);
     private static FragmentComponent fragmentComponent;
     public static FragmentComponent getFragmentComponentInstance(){
         if(fragmentComponent==null) {

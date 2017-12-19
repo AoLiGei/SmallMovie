@@ -64,7 +64,7 @@ public final class DbRegistry {
      * 通过名称获取整数值
      *
      * @param key          The name of the preference to retrieve.
-     * @param defaultValue Value to return if this preference does not exist.
+     * @param defaultValue Value to iv_return if this preference does not exist.
      * @return Returns the preference value if it exists, or defaultValue
      */
     public int getInt(String key, int defaultValue) {
@@ -87,7 +87,7 @@ public final class DbRegistry {
      * 通过名称获取长整数值
      *
      * @param key          The name of the preference to retrieve.
-     * @param defaultValue Value to return if this preference does not exist.
+     * @param defaultValue Value to iv_return if this preference does not exist.
      * @return Returns the preference value if it exists, or defaultValue
      */
     public long getLong(String key, long defaultValue) {
@@ -110,7 +110,7 @@ public final class DbRegistry {
      * 通过名称获取浮点值
      *
      * @param key          The name of the preference to retrieve.
-     * @param defaultValue Value to return if this preference does not exist.
+     * @param defaultValue Value to iv_return if this preference does not exist.
      * @return Returns the preference value if it exists, or defaultValue
      */
     public float getFloat(String key, float defaultValue) {
@@ -133,7 +133,7 @@ public final class DbRegistry {
      * 通过名称获取布尔值
      *
      * @param key          The name of the preference to retrieve.
-     * @param defaultValue Value to return if this preference does not exist.
+     * @param defaultValue Value to iv_return if this preference does not exist.
      * @return Returns the preference value if it exists, or defaultValue
      */
     public boolean getBoolean(String key, boolean defaultValue) {
@@ -155,7 +155,7 @@ public final class DbRegistry {
      * 通过名称获取字符串值
      *
      * @param key          The name of the preference to retrieve.
-     * @param defaultValue Value to return if this preference does not exist.
+     * @param defaultValue Value to iv_return if this preference does not exist.
      * @return Returns the preference value if it exists, or defaultValue
      */
     public String getString(String key, String defaultValue) {

@@ -1,13 +1,124 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".mvp.view.activity.MainActivity">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp">
+        <ImageView
+            android:id="@+id/img_setting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="16dp"
+            android:background="@mipmap/my_set" />
+    </RelativeLayout>
 
-   
+    <android.support.v7.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        app:divider="@drawable/line"
+        app:dividerPadding="40dp"
+        app:showDividers="middle|end">
 
+        <RelativeLayout
+            android:id="@+id/rl_record"
+            style="@style/mine_lin_style"
+            android:gravity="center_vertical">
+
+
+            <TextView
+                android:id="@+id/tv_history"
+                style="@style/common_tv_style"
+                android:layout_centerVertical="true"
+                android:text="@string/my_record" />
+
+            <ImageView
+                style="@style/both_wrap_style"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp"
+                android:background="@mipmap/right" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+
+            <!--<com.jude.easyrecyclerview.EasyRecyclerView-->
+                <!--android:id="@+id/recyclerView"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="100dp"-->
+                <!--android:layout_marginLeft="@dimen/mine_list_view_margin_left"-->
+                <!--android:layout_marginRight="@dimen/mine_list_view_margin_left"-->
+                <!--app:scrollbars="none"-->
+                <!--android:visibility="gone"/>-->
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_down"
+            style="@style/mine_lin_style"
+            android:gravity="center_vertical">
+
+
+            <TextView
+                android:id="@+id/tv_down"
+                style="@style/common_tv_style"
+                android:layout_centerVertical="true"
+                android:text="@string/my_down" />
+
+            <ImageView
+                style="@style/both_wrap_style"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp"
+                android:background="@mipmap/right" />
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/rl_collection"
+            style="@style/mine_lin_style"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/tv_collection"
+                style="@style/common_tv_style"
+                android:layout_centerVertical="true"
+                android:text="@string/my_collection" />
+
+            <ImageView
+                style="@style/both_wrap_style"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp"
+                android:background="@mipmap/right" />
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/rl_them"
+            style="@style/mine_lin_style"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/tv_them"
+                style="@style/common_tv_style"
+                android:layout_centerVertical="true"
+                android:text="@string/my_them" />
+
+            <ImageView
+                style="@style/both_wrap_style"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp"
+                android:background="@mipmap/right" />
+        </RelativeLayout>
+    </android.support.v7.widget.LinearLayoutCompat>
 </LinearLayout>
