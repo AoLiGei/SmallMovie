@@ -16,7 +16,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        android:largeHeap="true">
         <activity
             android:name=".mvp.view.activity.MainActivity"
             android:launchMode="singleTask">
@@ -28,5 +29,7 @@
         <activity android:name=".mvp.view.activity.VRActivity">
 
         </activity>
+        <activity android:name=".mvp.view.activity.VrPlayActivity"/>
+        <activity android:name=".mvp.view.activity.VrPlayActivity2"/>
     </application>
 </manifest>

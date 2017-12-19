@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import com.happy.bwiesample.R;
 import com.happy.bwiesample.base.BaseMvpFragment;
 import com.happy.bwiesample.entry.VrImageItem;
+import com.happy.bwiesample.entry.VrVideoBean;
 import com.happy.bwiesample.mvp.presenter.VRPresenter;
 import com.happy.bwiesample.mvp.view.VRView;
 import com.happy.bwiesample.mvp.view.adapter.VrImgAdapter;
@@ -54,6 +55,11 @@ public class VRImgFragment extends BaseMvpFragment<VRPresenter> implements VRVie
     @Override
     public void showVrImg(List<VrImageItem> datas) {
         rcView.setAdapter(new VrImgAdapter(context,datas));
+
+    }
+
+    @Override
+    public void showVrVideo(List<VrVideoBean.ContentBean> datas) {
 
     }
 }
