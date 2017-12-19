@@ -7,5 +7,5 @@ package com.happy.bwiesample.mvp.view;
 public interface SearchView {
 
     String getEditText();
-    
+
 }
