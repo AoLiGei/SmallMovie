@@ -1,8 +1,11 @@
 package com.happy.bwiesample.mvp.presenter;
 
 import com.happy.bwiesample.base.BasePresenter;
+import com.happy.bwiesample.entry.VrVideoBean;
 import com.happy.bwiesample.mvp.model.VRModel;
 import com.happy.bwiesample.mvp.view.VRView;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -22,5 +25,13 @@ public class VRPresenter extends BasePresenter<VRView,VRModel> {
 
     public void setVrImg(){
         getView().showVrImg(model.getVrImgDatas());
+    }
+    public void setVrVideo(){
+        model.setVrvideo(new VRModel.VrVideoListener() {
+            @Override
+            public void setVrVideo(List<VrVideoBean.ContentBean> datas) {
+                getView().showVrVideo(datas);
+            }
+        });
     }
 }
