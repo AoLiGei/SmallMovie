@@ -4,7 +4,7 @@ android {
     compileSdkVersion 26
     defaultConfig {
         applicationId "com.happy.bwiesample"
-        minSdkVersion 14
+        minSdkVersion 19
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
@@ -45,6 +45,9 @@ dependencies {
     compile 'org.greenrobot:eventbus:3.0.0'
     implementation 'com.android.support:design:26.1.0'
     compile 'com.android.support:cardview-v7:26.+'
-
     compile 'com.youth.banner:banner:1.4.10'
+    implementation project(':common')
+    implementation project(':commonwidget')
+    implementation project(':panowidget')
+    implementation project(':videowidget')
 }
