@@ -3,7 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/SmallMovie.iml" filepath="$PROJECT_DIR$/SmallMovie.iml" />
+      <module fileurl="file://D:\JavaANDAndroid\daima\Shixun2\SmallMovie\SmallMovie.iml" filepath="D:\JavaANDAndroid\daima\Shixun2\SmallMovie\SmallMovie.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://D:\JavaANDAndroid\daima\Shixun2\SmallMovie\app\app.iml" filepath="D:\JavaANDAndroid\daima\Shixun2\SmallMovie\app\app.iml" />
     </modules>
   </component>
 </project>
