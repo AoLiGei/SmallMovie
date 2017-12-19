@@ -1,5 +1,10 @@
 package com.happy.bwiesample.mvp.model;
 
+import com.happy.bwiesample.entry.VrImageItem;
+import com.happy.bwiesample.helper.VRApiHelper;
+
+import java.util.List;
+
 import javax.inject.Inject;
 
 /**
@@ -13,5 +18,9 @@ public class VRModel {
     @Inject
     public VRModel(){
 
+    }
+
+    public List<VrImageItem> getVrImgDatas(){
+        return VRApiHelper.getImageItems();
     }
 }

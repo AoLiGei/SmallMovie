@@ -19,4 +19,8 @@ public class VRPresenter extends BasePresenter<VRView,VRModel> {
     public VRPresenter(){
 
     }
+
+    public void setVrImg(){
+        getView().showVrImg(model.getVrImgDatas());
+    }
 }

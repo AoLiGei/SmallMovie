@@ -7,15 +7,14 @@ package com.happy.bwiesample.entry;
  * @Time 18:59
  */
 
-public class ImageItem {
+public class VrImageItem {
     private String mName,imgUrl,musicUrl;
 
-    public ImageItem(String mName, String imgUrl, String musicUrl) {
+    public VrImageItem(String mName, String imgUrl, String musicUrl) {
         this.mName = mName;
         this.imgUrl = imgUrl;
         this.musicUrl = musicUrl;
     }
-
     public String getmName() {
         return mName;
     }
@@ -41,7 +40,7 @@ public class ImageItem {
     }
     @Override
     public String toString() {
-        return "ImageItem{" +
+        return "VrImageItem{" +
                 "mName='" + mName + '\'' +
                 ", imgUrl='" + imgUrl + '\'' +
                 ", musicUrl='" + musicUrl + '\'' +

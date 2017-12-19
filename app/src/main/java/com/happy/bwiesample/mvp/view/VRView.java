@@ -1,5 +1,9 @@
 package com.happy.bwiesample.mvp.view;
 
+import com.happy.bwiesample.entry.VrImageItem;
+
+import java.util.List;
+
 /**
  * @Describtion
  * @Author LiAng
@@ -8,4 +12,7 @@ package com.happy.bwiesample.mvp.view;
  */
 
 public interface VRView {
+    //展示vr图片列表页
+
+    void showVrImg(List<VrImageItem> datas);
 }
