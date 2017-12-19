@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="16dp"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="#808080"
+        android:gravity="center_vertical"
+        >
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@mipmap/search"
+            android:layout_margin="8dp"
+            />
+
+        <EditText
+            android:id="@+id/search_et"
+            android:hint="请输入你喜欢的电影"
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:layout_height="45dp"
+            android:background="@drawable/search_edt_back"
+            />
+
+        <ImageView
+            android:id="@+id/clear_search"
+            android:layout_width="30dp"
+            android:layout_height="30dp" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

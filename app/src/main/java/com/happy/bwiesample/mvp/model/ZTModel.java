@@ -13,6 +13,6 @@ public class ZTModel {
 
     @Inject
     public ZTModel(){
-        
+
     }
 }

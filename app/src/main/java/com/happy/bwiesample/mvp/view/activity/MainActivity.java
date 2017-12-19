@@ -40,7 +40,6 @@ public class MainActivity extends BaseActivity{
         super.initView();
 
         main_rg = findViewById(R.id.main_rg);
-        main_title = findViewById(R.id.main_title);
         main_tv_vr = findViewById(R.id.main_tv_vr);
 
         main_tv_vr.setOnClickListener(new View.OnClickListener() {
@@ -76,19 +75,15 @@ public class MainActivity extends BaseActivity{
 
                 switch (checkedId){
                     case R.id.main_rb_1:
-                        main_title.setText("精选");
                         showFragment(0);
                         break;
                     case R.id.main_rb_2:
-                        main_title.setText("专题");
                         showFragment(1);
                         break;
                     case R.id.main_rb_3:
-                        main_title.setText("发现");
                         showFragment(2);
                         break;
                     case R.id.main_rb_4:
-                        main_title.setText("我的");
                         showFragment(3);
                         break;
                 }
