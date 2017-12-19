@@ -60,4 +60,5 @@ public interface IVideo {
      */
     @GET("Commentary/getCommentList.do")
     Flowable<VideoHttpResponse<VideoRes>> getCommentList(@Query("mediaId") String mediaId, @Query("pnum") String pnum);
+
 }
