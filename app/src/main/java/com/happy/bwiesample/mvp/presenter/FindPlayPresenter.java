@@ -1,6 +1,8 @@
 package com.happy.bwiesample.mvp.presenter;
 
+import com.happy.bwiesample.base.BasePresenter;
 import com.happy.bwiesample.mvp.model.FindPlayModel;
+import com.happy.bwiesample.mvp.view.fragment.FindPlayView;
 
 import javax.inject.Inject;
 
@@ -10,7 +12,7 @@ import javax.inject.Inject;
  * 功能：
  */
 
-public class FindPlayPresenter {
+public class FindPlayPresenter extends BasePresenter<FindPlayView,FindPlayModel> {
 
     @Inject
     public FindPlayPresenter() {
@@ -18,6 +20,8 @@ public class FindPlayPresenter {
 
     @Inject
     FindPlayModel findPlayModel;
+
+
 
 
 

@@ -85,7 +85,7 @@ public class FindFragment extends BaseMvpFragment<FindPresenter> implements Find
                 } else {
                     mDatas.remove(adapterPosition);
                 }
-                recyclerView.getAdapter().notifyDataSetChanged(); 
+                recyclerView.getAdapter().notifyDataSetChanged();
             }
 
             @Override
@@ -111,7 +111,7 @@ public class FindFragment extends BaseMvpFragment<FindPresenter> implements Find
     public void success(VideoHttpResponse<VideoRes> videoResVideoHttpResponse) {
 
         VideoRes ret = videoResVideoHttpResponse.getRet();
-        mDatas = ret.list;
+        mDatas = ret.list; 
         recyclerView.setVisibility(View.VISIBLE);
     }
 
