@@ -5,20 +5,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <RelativeLayout
-        android:id="@+id/main_title_bar"
+    <android.support.v7.widget.Toolbar
         android:layout_width="match_parent"
-        android:layout_height="65dp"
-        android:background="#4444f0"
+        android:layout_height="76dp"
+        android:background="@color/colorBluePrimary"
         >
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:layout_marginTop="26dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="40dp"
             android:text="发现"/>
-
-    </RelativeLayout>
+    </android.support.v7.widget.Toolbar>
 
     <include layout="@layout/content_main2"/>
 
