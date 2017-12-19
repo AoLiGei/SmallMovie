@@ -46,6 +46,7 @@ public class MainActivity extends BaseActivity{
             public void onClick(View v) {
                 //TODO
 
+
                 startActivity(new Intent(MainActivity.this,VRActivity.class));
             }
         });
