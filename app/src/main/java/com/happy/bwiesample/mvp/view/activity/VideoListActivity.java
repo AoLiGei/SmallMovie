@@ -132,9 +132,9 @@ public class VideoListActivity extends BaseActivity {
                         adapter.setOnItemClick(new VideoListAdapter.setOnItemClick() {
                             @Override
                             public void ItemCliek(View view, int position) {
-//                                Intent intent = new Intent(VideoListActivity.this,VideoPlay_Fan_Activity.class);
-//                                intent.putExtra("dataid",list.get(position).getDataId());
-//                                startActivity(intent);
+                                Intent intent = new Intent(VideoListActivity.this,FindPlayActivity.class);
+                                intent.putExtra("dataid",list.get(position).getDataId());
+                                startActivity(intent);
                             }
                         });
 

@@ -32,7 +32,6 @@
         <activity android:name=".mvp.view.activity.VrPlayActivity2" />
         <activity android:name=".mvp.view.activity.VideoListActivity" />
         <activity android:name=".mvp.view.activity.VideoPlay_Fan_Activity"></activity>
-        <activity android:name=".mvp.view.activity.VideoListActivity"></activity>
         <activity android:name=".mvp.view.activity.FindPlayActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait"
@@ -41,7 +40,6 @@
         </activity>
         <activity android:name=".mvp.view.activity.SearchActivity"/>
         <activity android:name=".mvp.view.activity.CaiPlayerActivity"/>
-        <activity android:name=".mvp.view.activity.FindPlayActivity"/>
     </application>
 
 </manifest>
