@@ -1,6 +1,7 @@
 package com.happy.bwiesample.mvp.model;
 
-import com.happy.bwiesample.entry.RecommendBean;
+import com.happy.bwiesample.entry.VideoHttpResponse;
+import com.happy.bwiesample.entry.VideoRes;
 import com.happy.bwiesample.helper.RetrofitHelper;
 import com.happy.bwiesample.http.IVideo;
 
@@ -23,7 +24,7 @@ public class JXModel {
     @Inject
     RetrofitHelper helper;
 
-    public Flowable<RecommendBean> getVideoData(){
+    public Flowable<VideoHttpResponse<VideoRes>> getVideoData(){
         return helper.getVideoRetrofitInstance().create(IVideo.class).getHomePage();
     }
 }

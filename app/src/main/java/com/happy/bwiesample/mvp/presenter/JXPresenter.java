@@ -1,7 +1,8 @@
 package com.happy.bwiesample.mvp.presenter;
 
 import com.happy.bwiesample.base.BasePresenter;
-import com.happy.bwiesample.entry.RecommendBean;
+import com.happy.bwiesample.entry.VideoHttpResponse;
+import com.happy.bwiesample.entry.VideoRes;
 import com.happy.bwiesample.mvp.model.JXModel;
 import com.happy.bwiesample.mvp.view.JXView;
 
@@ -27,22 +28,22 @@ public class JXPresenter extends BasePresenter<JXView,JXModel>{
     }
 
     public void showVideoData(){
-        model.getVideoData().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(new DisposableSubscriber<RecommendBean>() {
-                    @Override
-                    public void onNext(RecommendBean recommendBean) {
-                        getView().setVideoData(recommendBean);
-                    }
+       model.getVideoData().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+               .subscribeWith(new DisposableSubscriber<VideoHttpResponse<VideoRes>>() {
+                   @Override
+                   public void onNext(VideoHttpResponse<VideoRes> videoResVideoHttpResponse) {
+                       getView().setVideoData(videoResVideoHttpResponse);
+                   }
 
-                    @Override
-                    public void onError(Throwable t) {
+                   @Override
+                   public void onError(Throwable t) {
 
-                    }
+                   }
 
-                    @Override
-                    public void onComplete() {
+                   @Override
+                   public void onComplete() {
 
-                    }
-                });
+                   }
+               });
     }
 }
