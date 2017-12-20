@@ -1,8 +1,11 @@
 package com.happy.bwiesample.mvp.view.activity;
 
 import android.content.res.Configuration;
+import android.graphics.Color;
+import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,13 +16,18 @@ import com.dou361.ijkplayer.widget.PlayStateParams;
 import com.dou361.ijkplayer.widget.PlayerView;
 import com.happy.bwiesample.R;
 import com.happy.bwiesample.base.BaseMvpActivity;
+import com.happy.bwiesample.helper.ScreenHelper;
 import com.happy.bwiesample.mvp.presenter.VideoPlayPresenter;
 import com.happy.bwiesample.mvp.view.VideoPlayView;
+
+import javax.inject.Inject;
 
 public class VideoPlayActivity extends BaseMvpActivity<VideoPlayPresenter> implements VideoPlayView {
 
     private RelativeLayout rela;
 
+    @Inject
+    ScreenHelper screenHelper;
     @Override
     public void inject() {
 
@@ -34,6 +42,7 @@ public class VideoPlayActivity extends BaseMvpActivity<VideoPlayPresenter> imple
     @Override
     public void initView() {
         super.initView();
+        hideBottomUIMenu();
         rela = findViewById(R.id.videoPlay_rela);
         View inflate = LayoutInflater.from(this).inflate(R.layout.simple_player_view_player, rela);
         PlayerView playerVie=new PlayerView(this,inflate)
@@ -55,11 +64,24 @@ public class VideoPlayActivity extends BaseMvpActivity<VideoPlayPresenter> imple
             rela.setLayoutParams(params);
         }
         if(newConfig.orientation==Configuration.ORIENTATION_LANDSCAPE){
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-            params.topMargin=72;
+
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,  ViewGroup.LayoutParams.MATCH_PARENT);
+            Log.d("height", "onConfigurationChanged: "+screenHelper.getScreenHeight());
+            rela.setBackgroundColor(Color.RED);
             rela.setLayoutParams(params);
         }
     }
-
-
+    protected void hideBottomUIMenu() {
+        //隐藏虚拟按键，并且全屏
+        if (Build.VERSION.SDK_INT > 11 && Build.VERSION.SDK_INT < 19) { // lower api
+            View v = this.getWindow().getDecorView();
+            v.setSystemUiVisibility(View.GONE);
+        } else if (Build.VERSION.SDK_INT >= 19) {
+            //for new api versions.
+            View decorView = getWindow().getDecorView();
+            int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                    | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY | View.SYSTEM_UI_FLAG_FULLSCREEN;
+            decorView.setSystemUiVisibility(uiOptions);
+        }
+    }
 }

@@ -1,9 +1,14 @@
 package com.happy.bwiesample.mvp.view.activity;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
@@ -17,6 +22,8 @@ import com.happy.bwiesample.mvp.view.fragment.ZTFragment;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+
 public class MainActivity extends BaseActivity{
 
 
@@ -24,6 +31,9 @@ public class MainActivity extends BaseActivity{
     private FragmentManager fm;
     private List<Fragment> fragments;
     private TextView main_tv_vr;
+
+    @Inject
+    Context context;
 
     @Override
     public int setLayout() {
