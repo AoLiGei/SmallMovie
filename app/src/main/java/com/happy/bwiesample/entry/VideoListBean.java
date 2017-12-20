@@ -56,10 +56,10 @@ public class VideoListBean {
          */
 
         private AdvBean adv;
-        private int pnum;
-        private int totalRecords;
-        private int records;
-        private int totalPnum;
+        private Float pnum;
+        private Float totalRecords;
+        private Float records;
+        private Float totalPnum;
         private List<?> bannerList;
         private List<ListBean> list;
 
@@ -71,37 +71,7 @@ public class VideoListBean {
             this.adv = adv;
         }
 
-        public int getPnum() {
-            return pnum;
-        }
 
-        public void setPnum(int pnum) {
-            this.pnum = pnum;
-        }
-
-        public int getTotalRecords() {
-            return totalRecords;
-        }
-
-        public void setTotalRecords(int totalRecords) {
-            this.totalRecords = totalRecords;
-        }
-
-        public int getRecords() {
-            return records;
-        }
-
-        public void setRecords(int records) {
-            this.records = records;
-        }
-
-        public int getTotalPnum() {
-            return totalPnum;
-        }
-
-        public void setTotalPnum(int totalPnum) {
-            this.totalPnum = totalPnum;
-        }
 
         public List<?> getBannerList() {
             return bannerList;
@@ -191,10 +161,10 @@ public class VideoListBean {
              * roomId :
              */
 
-            private int airTime;
+            private Float airTime;
             private String duration;
             private String loadtype;
-            private int score;
+            private Float score;
             private String angleIcon;
             private String dataId;
             private String description;
@@ -204,13 +174,7 @@ public class VideoListBean {
             private String title;
             private String roomId;
 
-            public int getAirTime() {
-                return airTime;
-            }
 
-            public void setAirTime(int airTime) {
-                this.airTime = airTime;
-            }
 
             public String getDuration() {
                 return duration;
@@ -228,13 +192,6 @@ public class VideoListBean {
                 this.loadtype = loadtype;
             }
 
-            public int getScore() {
-                return score;
-            }
-
-            public void setScore(int score) {
-                this.score = score;
-            }
 
             public String getAngleIcon() {
                 return angleIcon;

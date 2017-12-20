@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.happy.bwiesample.R;
+import com.happy.bwiesample.entry.RecommendBean;
 import com.happy.bwiesample.entry.VideoType;
 import com.happy.bwiesample.helper.GlideHelper;
 
@@ -20,17 +21,29 @@ import javax.inject.Inject;
  * Created by:
  * 樊健翔
  * 2017/12/19 16:44
+ * 专题适配器
  */
 
 public class SpecialRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     @Inject
     GlideHelper helper;
     Context context;
-    List<VideoType> typeList;
+    List<RecommendBean.RetBean.ListBean> list;
 
-    public SpecialRecyclerAdapter(Context context, List<VideoType> typeList) {
+    public SpecialRecyclerAdapter(Context context, List<RecommendBean.RetBean.ListBean> list) {
         this.context = context;
-        this.typeList = typeList;
+        this.list = list;
+    }
+
+    public void addData(List<RecommendBean.RetBean.ListBean> list) {
+        this.list.addAll(list);
+        notifyDataSetChanged();
+    }
+
+    public void upDate(List<RecommendBean.RetBean.ListBean> list) {
+        this.list.clear();
+        addData(list);
+        notifyDataSetChanged();
     }
 
     @Override
@@ -53,12 +66,12 @@ public class SpecialRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         }
 
         if (holder instanceof MyViewHodler) {
-            VideoType videoType = typeList.get(position);
-            if(typeList.get(position).childList.get(0).pic!=null&&!typeList.get(position).childList.get(0).pic.equals("")){
-                Glide.with(context).load(typeList.get(position).childList.get(0).pic).into(((MyViewHodler) holder).imageView);
+            RecommendBean.RetBean.ListBean listBean = list.get(position);
+            if (listBean.childList.get(0).pic != null && !listBean.childList.get(0).pic.equals("")) {
+                Glide.with(context).load(listBean.childList.get(0).pic).into(((MyViewHodler) holder).imageView);
             }
-            if(videoType.title!=null&&!videoType.title.equals("")&&videoType.title!="Banner"){
-                ((MyViewHodler) holder).textView.setText(typeList.get(position).title);
+            if (listBean.title != null && !listBean.title.equals("") && listBean.title != "Banner") {
+                ((MyViewHodler) holder).textView.setText(listBean.title);
             }
         }
 
@@ -67,7 +80,7 @@ public class SpecialRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vi
 
     @Override
     public int getItemCount() {
-        return typeList.size();
+        return list.size();
     }
 
 

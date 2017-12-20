@@ -16,6 +16,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         setContentView(setLayout());
         setSystemBarTransparent(true);
         initView();
+        initData();
     }
 
 

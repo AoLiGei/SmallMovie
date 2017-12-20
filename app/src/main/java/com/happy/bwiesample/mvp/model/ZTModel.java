@@ -1,5 +1,6 @@
 package com.happy.bwiesample.mvp.model;
 
+import com.happy.bwiesample.entry.RecommendBean;
 import com.happy.bwiesample.entry.VideoHttpResponse;
 import com.happy.bwiesample.entry.VideoRes;
 import com.happy.bwiesample.entry.VideoType;
@@ -26,7 +27,7 @@ public class ZTModel {
 
     }
 
-    public Flowable<VideoHttpResponse<VideoRes>>getTypeData(){
-        return null;
+    public Flowable<RecommendBean>getTypeData(){
+        return helper.getVideoRetrofitInstance().create(IVideo.class).getHomePage();
     }
 }

@@ -1,6 +1,7 @@
 package com.happy.bwiesample.mvp.presenter;
 
 import com.happy.bwiesample.base.BasePresenter;
+import com.happy.bwiesample.entry.RecommendBean;
 import com.happy.bwiesample.entry.VideoHttpResponse;
 import com.happy.bwiesample.entry.VideoRes;
 import com.happy.bwiesample.mvp.model.ZTModel;
@@ -29,13 +30,13 @@ public class ZTPresenter extends BasePresenter<ZTView,ZTModel>{
     }
 
     public void getCommit(){
-        Flowable<VideoHttpResponse<VideoRes>> flowable = model.getTypeData();
-        flowable.subscribeOn(Schedulers.io())
+
+        model.getTypeData().subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(new DisposableSubscriber<VideoHttpResponse<VideoRes>>() {
+                .subscribeWith(new DisposableSubscriber<RecommendBean>() {
                     @Override
-                    public void onNext(VideoHttpResponse<VideoRes> videoResVideoHttpResponse) {
-                        getView().showZTList(videoResVideoHttpResponse.getRet().list);
+                    public void onNext(RecommendBean recommendBean) {
+                        getView().showZTList(recommendBean);
                     }
 
                     @Override

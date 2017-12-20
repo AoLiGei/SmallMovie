@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.happy.bwiesample.R;
+import com.happy.bwiesample.entry.RecommendBean;
 import com.happy.bwiesample.entry.VideoListBean;
 
 import java.lang.invoke.CallSite;
@@ -27,6 +28,17 @@ public class VideoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     public VideoListAdapter(Context context, List<VideoListBean.RetBean.ListBean> list) {
         this.context = context;
         this.list = list;
+    }
+
+    public void addData(List<VideoListBean.RetBean.ListBean> list) {
+        this.list.addAll(list);
+        notifyDataSetChanged();
+    }
+
+    public void upDate(List<VideoListBean.RetBean.ListBean> list) {
+        this.list.clear();
+        addData(list);
+        notifyDataSetChanged();
     }
 
     @Override
@@ -49,15 +61,21 @@ public class VideoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         }
 
         if(holder instanceof MyViewHodler){
-            ((MyViewHodler) holder).textView.setText(list.get(position).getTitle());
-            Glide.with(context).load(list.get(position).getPic()).into(((MyViewHodler) holder).imageView);
+            VideoListBean.RetBean.ListBean bean = list.get(position);
+            if(!bean.getTitle().equals("")&&bean.getTitle()!=null){
+                ((MyViewHodler) holder).textView.setText(list.get(position).getTitle());
+            }
+            if(!bean.getPic().equals("")&&bean.getPic()!=null){
+                Glide.with(context).load(list.get(position).getPic()).into(((MyViewHodler) holder).imageView);
+
+            }
 
         }
     }
 
     @Override
     public int getItemCount() {
-        return 100;
+        return list.size();
     }
 
 

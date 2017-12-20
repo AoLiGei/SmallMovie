@@ -18,15 +18,16 @@ import io.reactivex.subscribers.DisposableSubscriber;
  * @Time 19:07
  */
 
-public class JXPresenter extends BasePresenter<JXView,JXModel>{
+public class JXPresenter extends BasePresenter<JXView, JXModel> {
     @Inject
     JXModel model;
+
     @Inject
-    public JXPresenter(){
+    public JXPresenter() {
 
     }
 
-    public void showVideoData(){
+    public void showVideoData() {
         model.getVideoData().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(new DisposableSubscriber<RecommendBean>() {
                     @Override
