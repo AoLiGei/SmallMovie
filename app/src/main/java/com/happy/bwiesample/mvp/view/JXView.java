@@ -1,6 +1,7 @@
 package com.happy.bwiesample.mvp.view;
 
-import com.happy.bwiesample.entry.RecommendBean;
+import com.happy.bwiesample.entry.VideoHttpResponse;
+import com.happy.bwiesample.entry.VideoRes;
 
 /**
  * @Describtion
@@ -11,5 +12,5 @@ import com.happy.bwiesample.entry.RecommendBean;
 
 public interface JXView {
 
-    void setVideoData(RecommendBean bean);
+    void setVideoData(VideoHttpResponse<VideoRes> videoResVideoHttpResponse);
 }

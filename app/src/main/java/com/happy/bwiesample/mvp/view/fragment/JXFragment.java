@@ -1,19 +1,23 @@
 package com.happy.bwiesample.mvp.view.fragment;
 
-import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Toast;
 
 import com.happy.bwiesample.R;
 import com.happy.bwiesample.base.BaseMvpFragment;
-import com.happy.bwiesample.entry.RecommendBean;
+import com.happy.bwiesample.entry.VideoHttpResponse;
+import com.happy.bwiesample.entry.VideoRes;
+import com.happy.bwiesample.entry.VideoType;
 import com.happy.bwiesample.mvp.presenter.JXPresenter;
 import com.happy.bwiesample.mvp.view.JXView;
-import com.happy.bwiesample.mvp.view.activity.CaiPlayerActivity;
+import com.happy.bwiesample.mvp.view.adapter.OnRecyclerListener;
 import com.happy.bwiesample.mvp.view.adapter.RecommendAdapter;
+
+import java.util.List;
 
 /**
  * @Describtion
@@ -39,21 +43,6 @@ public class JXFragment extends BaseMvpFragment<JXPresenter> implements JXView {
     @Override
     public void inject() {
         getFragmentComponent().inject(this);
-    }
-
-    @Override
-    public void setVideoData(final RecommendBean bean) {
-        //设置适配器
-        adapter = new RecommendAdapter(getActivity(),bean);
-        recyclerView.setAdapter(adapter);
-        adapter.setListener(new RecommendAdapter.OnRecyclerItemListener() {
-            @Override
-            public void setItemListener(View view, int position) {
-                RecommendBean.RetBean.ListBean.ChildListBean listBean = bean.ret.list.get(4).childList.get(position - 2);
-                Intent intent = new Intent(getActivity(), CaiPlayerActivity.class);
-                getActivity().startActivity(intent);
-            }
-        });
     }
 
     @Override
@@ -91,6 +80,22 @@ public class JXFragment extends BaseMvpFragment<JXPresenter> implements JXView {
                 }
             }
 
+        });
+    }
+
+    @Override
+    public void setVideoData(VideoHttpResponse<VideoRes> videoResVideoHttpResponse) {
+        final List<VideoType> list = videoResVideoHttpResponse.getRet().list;
+        //设置适配器
+        adapter = new RecommendAdapter(getActivity());
+        adapter.addData(list);
+        recyclerView.setAdapter(adapter);
+        //设置监听
+        adapter.setListener(new OnRecyclerListener() {
+            @Override
+            public void setOnItemListener(View view, int position) {
+                Toast.makeText(getActivity(),list.get(4).childList.get(position-2).title,Toast.LENGTH_SHORT).show();
+            }
         });
     }
 }
