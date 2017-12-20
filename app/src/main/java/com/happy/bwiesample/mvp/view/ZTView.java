@@ -1,5 +1,6 @@
 package com.happy.bwiesample.mvp.view;
 
+import com.happy.bwiesample.entry.RecommendBean;
 import com.happy.bwiesample.entry.VideoType;
 
 import java.util.List;
@@ -12,5 +13,5 @@ import java.util.List;
  */
 
 public interface ZTView {
-    void showZTList(List<VideoType>typeList);
+    void showZTList(RecommendBean bean);
 }

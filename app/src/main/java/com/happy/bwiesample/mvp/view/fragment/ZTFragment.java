@@ -1,13 +1,27 @@
 package com.happy.bwiesample.mvp.view.fragment;
 
+import android.content.Context;
+import android.content.Intent;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.view.View;
+import android.widget.Toast;
+
 import com.happy.bwiesample.R;
 import com.happy.bwiesample.base.BaseMvpFragment;
+import com.happy.bwiesample.entry.RecommendBean;
 import com.happy.bwiesample.entry.VideoType;
 import com.happy.bwiesample.mvp.presenter.JXPresenter;
 import com.happy.bwiesample.mvp.presenter.ZTPresenter;
 import com.happy.bwiesample.mvp.view.ZTView;
+import com.happy.bwiesample.mvp.view.activity.VideoListActivity;
+import com.happy.bwiesample.mvp.view.adapter.SpecialRecyclerAdapter;
+import com.liaoinstan.springview.widget.SpringView;
 
 import java.util.List;
+
+import javax.inject.Inject;
 
 /**
  * @Describtion
@@ -17,6 +31,11 @@ import java.util.List;
  */
 
 public class ZTFragment extends BaseMvpFragment<ZTPresenter> implements ZTView {
+    @Inject
+    Context context;
+    private RecyclerView recyclerView;
+    private SpringView sv;
+
     @Override
     public int setLayout() {
         return R.layout.fragment_zt;
@@ -24,12 +43,52 @@ public class ZTFragment extends BaseMvpFragment<ZTPresenter> implements ZTView {
 
     @Override
     public void inject() {
-
         getFragmentComponent().inject(this);
     }
 
+
     @Override
-    public void showZTList(List<VideoType> typeList) {
+    public void initView() {
+        super.initView();
+        recyclerView = view.findViewById(R.id.special_rv);
+        sv = view.findViewById(R.id.special_sp);
+
+
+    }
+
+    @Override
+    public void initData() {
+        super.initData();
+        p.getCommit();
+    }
+
+    @Override
+    public void showZTList(final RecommendBean bean) {
+        recyclerView.setLayoutManager(new GridLayoutManager(context, 2));
+        final SpecialRecyclerAdapter adapter = new SpecialRecyclerAdapter(context, bean.ret.list);
+        recyclerView.setAdapter(adapter);
+        adapter.setOnItemClick(new SpecialRecyclerAdapter.setOnItemClick() {
+            @Override
+            public void ItemCliek(View view, int position) {
+                Intent intent = new Intent(context, VideoListActivity.class);
+                intent.putExtra("url", bean.ret.list.get(position).moreURL);
+                intent.putExtra("name", bean.ret.list.get(position).title);
+                startActivity(intent);
+            }
+        });
+
+        sv.setListener(new SpringView.OnFreshListener() {
+            @Override
+            public void onRefresh() {
+                p.getCommit();
+                adapter.upDate(bean.ret.list);
+                sv.onFinishFreshAndLoad();
+            }
+
+            @Override
+            public void onLoadmore() {
+            }
+        });
 
     }
 }
