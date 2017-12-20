@@ -15,12 +15,14 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.happy.bwiesample.R;
-import com.happy.bwiesample.entry.RecommendBean;
+import com.happy.bwiesample.entry.VideoInfo;
+import com.happy.bwiesample.entry.VideoType;
 import com.happy.bwiesample.mvp.view.activity.SearchActivity;
 import com.youth.banner.Banner;
 import com.youth.banner.listener.OnBannerListener;
 import com.youth.banner.loader.ImageLoader;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -31,12 +33,26 @@ public class RecommendAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
     private LayoutInflater inflater;
     private Context context;
-    private RecommendBean bean;
+    private OnRecyclerListener listener;
+    private List<VideoType> list = new ArrayList<>();
 
-    public RecommendAdapter(Context context, RecommendBean bean) {
+    public RecommendAdapter(Context context) {
         this.context = context;
-        this.bean = bean;
         inflater = LayoutInflater.from(context);
+    }
+
+    public void addData(List<VideoType> list){
+        this.list.clear();
+        this.list.addAll(list);
+        notifyDataSetChanged();
+    }
+
+    /**
+     * 添加到监听的方法
+     * @param listener
+     */
+    public void setListener(OnRecyclerListener listener){
+        this.listener = listener;
     }
 
     @Override
@@ -58,7 +74,7 @@ public class RecommendAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             inflate.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    listener.setItemListener(inflate,holder3.getLayoutPosition());
+                    listener.setOnItemListener(inflate,holder3.getLayoutPosition());
                 }
             });
             return holder3;
@@ -70,13 +86,14 @@ public class RecommendAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
 
         if (holder instanceof BannerViewHolder){
+
             ((BannerViewHolder) holder).banner.setImageLoader(new ImageLoader() {
                 @Override
                 public void displayImage(Context context, Object path, ImageView imageView) {
-                    Glide.with(context).load(((RecommendBean.RetBean.ListBean.ChildListBean)path).pic).into(imageView);
+                    Glide.with(context).load(((VideoInfo)path).pic).into(imageView);
                 }
             });
-            ((BannerViewHolder) holder).banner.setImages(bean.ret.list.get(0).childList);
+            ((BannerViewHolder) holder).banner.setImages(list.get(0).childList);
             ((BannerViewHolder) holder).banner.start();
 
             ((BannerViewHolder) holder).search_btn.setOnClickListener(new View.OnClickListener() {
@@ -89,8 +106,8 @@ public class RecommendAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             ((BannerViewHolder) holder).banner.setOnBannerListener(new OnBannerListener() {
                 @Override
                 public void OnBannerClick(int position) {
-                    RecommendBean.RetBean.ListBean.ChildListBean childListBean = bean.ret.list.get(0).childList.get(position);
-                    Toast.makeText(context,childListBean.title,Toast.LENGTH_SHORT).show();
+                    VideoInfo videoInfo = list.get(0).childList.get(position);
+                    Toast.makeText(context,videoInfo.title,Toast.LENGTH_SHORT).show();
                 }
             });
         }
@@ -99,7 +116,7 @@ public class RecommendAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
         }
         if (holder instanceof VideoDataViewHolder){
-            List<RecommendBean.RetBean.ListBean.ChildListBean> beans = bean.ret.list.get(4).childList;
+            List<VideoInfo> beans = list.get(4).childList;
             ((VideoDataViewHolder) holder).textView.setText(beans.get(position-2).title);
             Glide.with(context).load(beans.get(position-2).pic).into(((VideoDataViewHolder) holder).imageView);
             ((VideoDataViewHolder) holder).cardView.setCardElevation(8);//设置阴影部分大小
@@ -112,7 +129,7 @@ public class RecommendAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
     @Override
     public int getItemCount() {
-        return bean.ret.list.size()+2;
+        return list==null?0:list.get(0).childList.size()+2;
     }
 
     @Override
@@ -158,14 +175,4 @@ public class RecommendAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             cardView = itemView.findViewById(R.id.card_view);
         }
     }
-
-    private OnRecyclerItemListener listener;
-
-    public void setListener(OnRecyclerItemListener listener){
-        this.listener = listener;
-    }
-    public interface OnRecyclerItemListener{
-        void setItemListener(View view,int position);
-    }
-
 }
