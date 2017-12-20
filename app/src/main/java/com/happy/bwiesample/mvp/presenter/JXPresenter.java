@@ -18,32 +18,31 @@ import io.reactivex.subscribers.DisposableSubscriber;
  * @Time 19:07
  */
 
-public class JXPresenter extends BasePresenter<JXView, JXModel> {
+public class JXPresenter extends BasePresenter<JXView,JXModel>{
     @Inject
     JXModel model;
-
     @Inject
-    public JXPresenter() {
+    public JXPresenter(){
 
     }
 
-    public void showVideoData() {
-        model.getVideoData().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(new DisposableSubscriber<RecommendBean>() {
-                    @Override
-                    public void onNext(RecommendBean recommendBean) {
-                        getView().setVideoData(recommendBean);
-                    }
+    public void showVideoData(){
+       model.getVideoData().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+               .subscribeWith(new DisposableSubscriber<VideoHttpResponse<VideoRes>>() {
+                   @Override
+                   public void onNext(VideoHttpResponse<VideoRes> videoResVideoHttpResponse) {
+                       getView().setVideoData(videoResVideoHttpResponse);
+                   }
 
-                    @Override
-                    public void onError(Throwable t) {
+                   @Override
+                   public void onError(Throwable t) {
 
-                    }
+                   }
 
-                    @Override
-                    public void onComplete() {
+                   @Override
+                   public void onComplete() {
 
-                    }
-                });
+                   }
+               });
     }
 }
