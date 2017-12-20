@@ -1,6 +1,8 @@
 package com.happy.bwiesample.mvp.view.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -54,7 +56,7 @@ public class HotAdapter extends RecyclerView.Adapter<HotAdapter.ViewHolder> {
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        final View view = inflater.inflate(R.layout.movielist_rv_item, parent, false);
+        final View view = inflater.inflate(R.layout.hot_video_item, parent, false);
         final ViewHolder holder = new ViewHolder(view);
         view.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,6 +72,9 @@ public class HotAdapter extends RecyclerView.Adapter<HotAdapter.ViewHolder> {
         VideoInfo videoInfo = list.get(0).childList.get(position);
         holder.textView.setText(videoInfo.title);
         Glide.with(context).load(videoInfo.pic).into(holder.imageView);
+        holder.cardView.setCardElevation(8);//设置阴影部分大小
+        holder.cardView.setContentPadding(5,5,5,5);//设置图片距离阴影大小
+        holder.cardView.setCardBackgroundColor(Color.parseColor("#40ffffff"));
     }
 
     @Override
@@ -78,14 +83,15 @@ public class HotAdapter extends RecyclerView.Adapter<HotAdapter.ViewHolder> {
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-
+        public CardView cardView;
         public ImageView imageView;
         public TextView textView;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            imageView = itemView.findViewById(R.id.movielist_item_iv);
-            textView = itemView.findViewById(R.id.movielist_item_tv);
+            cardView = itemView.findViewById(R.id.hot_card);
+            imageView = itemView.findViewById(R.id.hot_img);
+            textView = itemView.findViewById(R.id.hot_text);
         }
     }
 }

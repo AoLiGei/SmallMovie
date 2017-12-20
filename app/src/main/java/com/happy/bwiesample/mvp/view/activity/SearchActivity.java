@@ -135,7 +135,6 @@ public class SearchActivity extends BaseMvpActivity<SearchPresenter> implements 
     @Override
     public void showHotData(VideoHttpResponse<VideoRes> videobean) {
         final List<VideoType> list = videobean.getRet().list;
-        Log.e("*****",list.get(0).childList.get(1).title);
         HotAdapter hotAdapter = new HotAdapter(this);
         hotAdapter.addData(list);
         hot_recycler.setAdapter(hotAdapter);
