@@ -72,8 +72,6 @@ public class FindFragment extends BaseMvpFragment<FindPresenter> implements Find
         });
         final RenRenCallback callback = new RenRenCallback();
 
-        recyclerView.setLayoutManager(new OverLayCardLayoutManager(getActivity()));
-        recyclerView.setAdapter(new MyAdapter());
 
         callback.setSwipeListener(new RenRenCallback.OnSwipeListener() {
             @Override
@@ -112,6 +110,8 @@ public class FindFragment extends BaseMvpFragment<FindPresenter> implements Find
         VideoRes ret = videoResVideoHttpResponse.getRet();
         mDatas = ret.list;
         recyclerView.setVisibility(View.VISIBLE);
+        recyclerView.setLayoutManager(new OverLayCardLayoutManager(getActivity()));
+        recyclerView.setAdapter(new MyAdapter());
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
@@ -150,7 +150,12 @@ public class FindFragment extends BaseMvpFragment<FindPresenter> implements Find
 
         @Override
         public int getItemCount() {
-            return mDatas.size();
+            if(mDatas==null){
+                return 0;
+            }else {
+                return mDatas.size();
+            }
+
         }
     }
 

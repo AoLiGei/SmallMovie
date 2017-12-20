@@ -1,6 +1,8 @@
 package com.happy.bwiesample.mvp.presenter;
 
 import com.happy.bwiesample.base.BasePresenter;
+import com.happy.bwiesample.entry.VideoHttpResponse;
+import com.happy.bwiesample.entry.VideoRes;
 import com.happy.bwiesample.mvp.model.VideoPlayModel;
 import com.happy.bwiesample.mvp.view.VideoPlayView;
 
@@ -17,5 +19,14 @@ public class VideoPlayPresenter extends BasePresenter<VideoPlayView,VideoPlayMod
     @Inject
     public VideoPlayPresenter(){
 
+    }
+
+    public void getVideoRes(String mediaId){
+        model.getMovieRes(mediaId, new VideoPlayModel.MovieResListener() {
+            @Override
+            public void getMovieRes(VideoHttpResponse<VideoRes> videoRes) {
+                getView().setMovieRes(videoRes);
+            }
+        });
     }
 }

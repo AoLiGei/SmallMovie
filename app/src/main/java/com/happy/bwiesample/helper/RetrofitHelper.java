@@ -22,7 +22,7 @@ public class RetrofitHelper {
     private Retrofit GanksRetrofit;
     private Object ganksObject=new Object();
 
-    public Retrofit getVideoRetrofitInstance(){
+    private Retrofit getVideoRetrofitInstance(){
         if(videoRetrofit==null){
             synchronized (VideoObject){
                 if(videoRetrofit==null){
@@ -52,7 +52,7 @@ public class RetrofitHelper {
         }
         return videoRetrofit;
     }
-    public Retrofit getGanksRetrofitInstance(){
+    private Retrofit getGanksRetrofitInstance(){
         if(GanksRetrofit==null){
             synchronized (ganksObject){
                 if(GanksRetrofit==null){
