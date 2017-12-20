@@ -28,6 +28,8 @@ import com.lzy.okgo.OkGo;
 import com.lzy.okgo.cache.CacheMode;
 import com.lzy.okgo.callback.StringCallback;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.io.IOException;
 import java.util.List;
 
@@ -132,7 +134,9 @@ public class VideoListActivity extends BaseActivity {
                         adapter.setOnItemClick(new VideoListAdapter.setOnItemClick() {
                             @Override
                             public void ItemCliek(View view, int position) {
-                                Intent intent = new Intent(VideoListActivity.this,FindPlayActivity.class);
+                                Intent intent = new Intent(VideoListActivity.this,VideoPlay_Fan_Activity.class);
+                                VideoListBean.RetBean.ListBean bean = list.get(position);
+                                EventBus.getDefault().post(bean);
                                 intent.putExtra("dataid",list.get(position).getDataId());
                                 startActivity(intent);
                             }
