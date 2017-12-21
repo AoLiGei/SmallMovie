@@ -21,11 +21,11 @@ public class SearchModel {
     RetrofitHelper helper;
 
     public Flowable<VideoHttpResponse<VideoRes>> getSearchVideoList(String keyword){
-        return helper.getVideoRetrofitInstance().create(IVideo.class).getVideoListByKeyWord(keyword,null);
+        return helper.getVideoNetClass(IVideo.class).getVideoListByKeyWord(keyword,null);
     }
 
     public Flowable<VideoHttpResponse<VideoRes>> getHotVideoList(){
-        return helper.getVideoRetrofitInstance().create(IVideo.class).getHomePage();
+        return helper.getVideoNetClass(IVideo.class).getHomePage();
     }
 
 }

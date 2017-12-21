@@ -28,6 +28,6 @@ public class ZTModel {
     }
 
     public Flowable<RecommendBean>getTypeData(){
-        return helper.getVideoRetrofitInstance().create(IVideo.class).getHomePage1();
+        return helper.getVideoNetClass(IVideo.class).getHomePage1();
     }
 }
