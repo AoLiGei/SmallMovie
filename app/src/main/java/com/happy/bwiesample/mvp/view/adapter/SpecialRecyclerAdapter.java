@@ -10,9 +10,11 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.happy.bwiesample.R;
 import com.happy.bwiesample.entry.RecommendBean;
+import com.happy.bwiesample.entry.VideoInfo;
 import com.happy.bwiesample.entry.VideoType;
 import com.happy.bwiesample.helper.GlideHelper;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -28,21 +30,22 @@ public class SpecialRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vi
     @Inject
     GlideHelper helper;
     Context context;
-    List<VideoType> list;
+    List<VideoInfo> videoInfos = new ArrayList<>();
+    ;
 
-    public SpecialRecyclerAdapter(Context context, List<VideoType> list) {
+    public SpecialRecyclerAdapter(Context context, List<VideoInfo> videoInfos) {
         this.context = context;
-        this.list = list;
+        this.videoInfos = videoInfos;
     }
 
-    public void addData(List<VideoType> list) {
-        this.list.addAll(list);
+    public void addData(List<VideoInfo> videoInfos) {
+        this.videoInfos.addAll(videoInfos);
         notifyDataSetChanged();
     }
 
-    public void upDate(List<VideoType> list) {
-        this.list.clear();
-        addData(list);
+    public void upDate(List<VideoInfo> videoInfos) {
+        this.videoInfos.clear();
+        addData(videoInfos);
         notifyDataSetChanged();
     }
 
@@ -55,23 +58,19 @@ public class SpecialRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vi
 
     @Override
     public void onBindViewHolder(final RecyclerView.ViewHolder holder, int position) {
-        if (setOnItemClick != null) {
-            holder.itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    int position = holder.getLayoutPosition();
-                    setOnItemClick.ItemCliek(holder.itemView, position);
-                }
-            });
-        }
-
         if (holder instanceof MyViewHodler) {
-            VideoType videoType = list.get(position);
-            if (videoType.childList.get(0).pic != null && !videoType.childList.get(0).pic.equals("")) {
-                Glide.with(context).load(videoType.childList.get(0).pic).into(((MyViewHodler) holder).imageView);
-            }
-            if (videoType.title != null && !videoType.title.equals("") && videoType.title != "Banner") {
-                ((MyViewHodler) holder).textView.setText(videoType.title);
+            Glide.with(context).load(videoInfos.get(position).pic).into(((MyViewHodler) holder).imageView);
+            ((MyViewHodler) holder).textView.setText(videoInfos.get(position).title);
+
+            //点击事件
+            if (setOnItemClick != null) {
+                holder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        int position = holder.getLayoutPosition();
+                        setOnItemClick.ItemCliek(holder.itemView, position);
+                    }
+                });
             }
         }
 
@@ -80,7 +79,7 @@ public class SpecialRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vi
 
     @Override
     public int getItemCount() {
-        return list.size();
+        return videoInfos.size();
     }
 
 

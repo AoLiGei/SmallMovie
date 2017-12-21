@@ -7,7 +7,7 @@ package com.happy.bwiesample.entry;
  * @Time 11:01
  */
 
-public class VideoHttpResponse<T> {
+public class  VideoHttpResponse<T> {
     private int code;
     private String msg;
     T ret;
