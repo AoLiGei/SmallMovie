@@ -134,10 +134,10 @@ public class VideoListActivity extends BaseActivity {
                         adapter.setOnItemClick(new VideoListAdapter.setOnItemClick() {
                             @Override
                             public void ItemCliek(View view, int position) {
-                                Intent intent = new Intent(VideoListActivity.this,VideoPlay_Fan_Activity.class);
+                                Intent intent = new Intent(VideoListActivity.this,VideoPlayActivity.class);
                                 VideoListBean.RetBean.ListBean bean = list.get(position);
-                                intent.putExtra("playId",list.get(position).getDataId());
-                                intent.putExtra("loadURL",list.get(position).getLoadURL());
+                                intent.putExtra("playId",bean.getDataId());
+                                intent.putExtra("loadURL",bean .getLoadURL());
                                 startActivity(intent);
                             }
                         });
