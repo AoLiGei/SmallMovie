@@ -38,7 +38,10 @@
             android:screenOrientation="portrait">
 
         </activity>
-        <activity android:name=".mvp.view.activity.VideoPlay_Fan_Activity"></activity>
+        <activity android:name=".mvp.view.activity.VideoPlay_Fan_Activity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
+            ></activity>
         <activity android:name=".mvp.view.activity.FindPlayActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait"

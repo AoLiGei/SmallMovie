@@ -136,8 +136,8 @@ public class VideoListActivity extends BaseActivity {
                             public void ItemCliek(View view, int position) {
                                 Intent intent = new Intent(VideoListActivity.this,VideoPlay_Fan_Activity.class);
                                 VideoListBean.RetBean.ListBean bean = list.get(position);
-                                EventBus.getDefault().post(bean);
-                                intent.putExtra("dataid",list.get(position).getDataId());
+                                intent.putExtra("playId",list.get(position).getDataId());
+                                intent.putExtra("loadURL",list.get(position).getLoadURL());
                                 startActivity(intent);
                             }
                         });

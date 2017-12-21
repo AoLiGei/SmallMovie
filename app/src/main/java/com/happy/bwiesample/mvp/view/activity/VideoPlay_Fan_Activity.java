@@ -1,16 +1,26 @@
 package com.happy.bwiesample.mvp.view.activity;
 
+import android.content.Intent;
+import android.content.res.Configuration;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.dou361.ijkplayer.widget.PlayStateParams;
+import com.dou361.ijkplayer.widget.PlayerView;
 import com.happy.bwiesample.R;
 import com.happy.bwiesample.base.BaseMvpActivity;
 import com.happy.bwiesample.entry.VideoListBean;
@@ -39,6 +49,9 @@ public class VideoPlay_Fan_Activity extends BaseMvpActivity<VideoPlayPresenter> 
 
     @Inject
     ScreenHelper screenHelper;
+    private RelativeLayout rela;
+    private VideoListBean.RetBean.ListBean listBean;
+    private View inflate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,23 +69,47 @@ public class VideoPlay_Fan_Activity extends BaseMvpActivity<VideoPlayPresenter> 
         return R.layout.activity_video_play_fan;
     }
 
-    @Subscribe
-    public void onEventMainThread(VideoListBean.RetBean.ListBean bean) {
-        String msg = "onEventMainThread收到了消息：" + bean.getTitle();
-        Log.d("harvic", msg);
-        Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
-    }
-
     @Override
     public void initView() {
         super.initView();
-        EventBus.getDefault().register(this);
+
         hideBottomUIMenu();
-        video_play_head_back = (ImageView) findViewById(R.id.video_play_head_back);
-        video_play_head_tv = (TextView) findViewById(R.id.video_play_head_tv);
-        video_play_head_collection = (ImageView) findViewById(R.id.video_play_head_collection);
+
+        Intent intent = getIntent();
+//        intent.
         video_play_tablayout = (TabLayout) findViewById(R.id.video_play_tablayout);
         video_play_viewpager = (ViewPager) findViewById(R.id.video_play_viewpager);
+
+
+        rela = findViewById(R.id.videoPlay_rela);
+        View inflate = LayoutInflater.from(this).inflate(R.layout.simple_player_view_player, rela);
+        PlayerView playerVie=new PlayerView(this,inflate)
+                .setTitle("什么")
+                .setScaleType(PlayStateParams.fitparent)
+                .hideMenu(true)
+                .forbidTouch(false)
+                .hideCenterPlayer(false)
+                .setPlaySource("http://youkesupload.oss-cn-hangzhou.aliyuncs.com/0e9641acc8acebcf2cd8657f334d5cca6aba480b/c4e73cf9957556f24f74e95320ddcce692d84633.mp4 ")
+                .startPlay();
+//        playerVie.startPlay();
+//        playerVie.hideCenterPlayer(true);
+    }
+
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT) {
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 600);
+            rela.setLayoutParams(params);
+        }
+        if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+            Log.d("height", "onConfigurationChanged: " + screenHelper.getScreenHeight());
+            rela.setBackgroundColor(Color.RED);
+            rela.setLayoutParams(params);
+        }
     }
 
     @Override
@@ -95,9 +132,4 @@ public class VideoPlay_Fan_Activity extends BaseMvpActivity<VideoPlayPresenter> 
     }
 
 
-    @Override
-    protected void onDestroy(){
-        super.onDestroy();
-        EventBus.getDefault().unregister(this);//反注册EventBus
-    }
 }

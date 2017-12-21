@@ -28,19 +28,19 @@ public class SpecialRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vi
     @Inject
     GlideHelper helper;
     Context context;
-    List<RecommendBean.RetBean.ListBean> list;
+    List<VideoType> list;
 
-    public SpecialRecyclerAdapter(Context context, List<RecommendBean.RetBean.ListBean> list) {
+    public SpecialRecyclerAdapter(Context context, List<VideoType> list) {
         this.context = context;
         this.list = list;
     }
 
-    public void addData(List<RecommendBean.RetBean.ListBean> list) {
+    public void addData(List<VideoType> list) {
         this.list.addAll(list);
         notifyDataSetChanged();
     }
 
-    public void upDate(List<RecommendBean.RetBean.ListBean> list) {
+    public void upDate(List<VideoType> list) {
         this.list.clear();
         addData(list);
         notifyDataSetChanged();
@@ -66,12 +66,12 @@ public class SpecialRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         }
 
         if (holder instanceof MyViewHodler) {
-            RecommendBean.RetBean.ListBean listBean = list.get(position);
-            if (listBean.childList.get(0).pic != null && !listBean.childList.get(0).pic.equals("")) {
-                Glide.with(context).load(listBean.childList.get(0).pic).into(((MyViewHodler) holder).imageView);
+            VideoType videoType = list.get(position);
+            if (videoType.childList.get(0).pic != null && !videoType.childList.get(0).pic.equals("")) {
+                Glide.with(context).load(videoType.childList.get(0).pic).into(((MyViewHodler) holder).imageView);
             }
-            if (listBean.title != null && !listBean.title.equals("") && listBean.title != "Banner") {
-                ((MyViewHodler) holder).textView.setText(listBean.title);
+            if (videoType.title != null && !videoType.title.equals("") && videoType.title != "Banner") {
+                ((MyViewHodler) holder).textView.setText(videoType.title);
             }
         }
 

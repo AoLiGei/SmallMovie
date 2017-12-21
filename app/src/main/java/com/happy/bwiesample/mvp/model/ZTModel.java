@@ -27,7 +27,7 @@ public class ZTModel {
 
     }
 
-    public Flowable<RecommendBean>getTypeData(){
-        return helper.getVideoRetrofitInstance().create(IVideo.class).getHomePage1();
+    public Flowable<VideoHttpResponse<VideoRes>>getTypeData(){
+        return helper.getVideoNetClass(IVideo.class).getHomePage();
     }
 }

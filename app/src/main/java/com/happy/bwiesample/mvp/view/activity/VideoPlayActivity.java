@@ -51,7 +51,7 @@ public class VideoPlayActivity extends BaseMvpActivity<VideoPlayPresenter> imple
                 .hideMenu(true)
                 .forbidTouch(false)
                 .hideCenterPlayer(false)
-                .setPlaySource("http://youkesupload.oss-cn-hangzhou.aliyuncs.com/0e9641acc8acebcf2cd8657f334d5cca6aba480b/c4e73cf9957556f24f74e95320ddcce692d84633.mp4 ");
+                .setPlaySource("http://youkesupload.oss-cn-hangzhou.aliyuncs.com/0e9641acc8acebcf2cd8657f334d5cca6aba480b/c4e73cf9957556f24f74e95320ddcce692d84633.mp4");
         playerVie.startPlay();
 
     }

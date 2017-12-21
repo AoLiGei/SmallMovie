@@ -33,10 +33,10 @@ public class ZTPresenter extends BasePresenter<ZTView,ZTModel>{
 
         model.getTypeData().subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(new DisposableSubscriber<RecommendBean>() {
+                .subscribeWith(new DisposableSubscriber<VideoHttpResponse<VideoRes>>() {
                     @Override
-                    public void onNext(RecommendBean recommendBean) {
-                        getView().showZTList(recommendBean);
+                    public void onNext(VideoHttpResponse<VideoRes> videoResVideoHttpResponse) {
+                        getView().showZTList(videoResVideoHttpResponse);
                     }
 
                     @Override

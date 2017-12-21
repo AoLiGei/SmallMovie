@@ -11,6 +11,8 @@ import android.widget.Toast;
 import com.happy.bwiesample.R;
 import com.happy.bwiesample.base.BaseMvpFragment;
 import com.happy.bwiesample.entry.RecommendBean;
+import com.happy.bwiesample.entry.VideoHttpResponse;
+import com.happy.bwiesample.entry.VideoRes;
 import com.happy.bwiesample.entry.VideoType;
 import com.happy.bwiesample.mvp.presenter.JXPresenter;
 import com.happy.bwiesample.mvp.presenter.ZTPresenter;
@@ -63,16 +65,16 @@ public class ZTFragment extends BaseMvpFragment<ZTPresenter> implements ZTView {
     }
 
     @Override
-    public void showZTList(final RecommendBean bean) {
+    public void showZTList(final VideoHttpResponse<VideoRes> videoResVideoHttpResponse) {
         recyclerView.setLayoutManager(new GridLayoutManager(context, 2));
-        final SpecialRecyclerAdapter adapter = new SpecialRecyclerAdapter(context, bean.ret.list);
+        final SpecialRecyclerAdapter adapter = new SpecialRecyclerAdapter(context, videoResVideoHttpResponse.getRet().list);
         recyclerView.setAdapter(adapter);
         adapter.setOnItemClick(new SpecialRecyclerAdapter.setOnItemClick() {
             @Override
             public void ItemCliek(View view, int position) {
                 Intent intent = new Intent(context, VideoListActivity.class);
-                intent.putExtra("url", bean.ret.list.get(position).moreURL);
-                intent.putExtra("name", bean.ret.list.get(position).title);
+                intent.putExtra("url", videoResVideoHttpResponse.getRet().list.get(position).moreURL);
+                intent.putExtra("name", videoResVideoHttpResponse.getRet().list.get(position).title);
                 startActivity(intent);
             }
         });
@@ -81,7 +83,7 @@ public class ZTFragment extends BaseMvpFragment<ZTPresenter> implements ZTView {
             @Override
             public void onRefresh() {
                 p.getCommit();
-                adapter.upDate(bean.ret.list);
+                adapter.upDate(videoResVideoHttpResponse.getRet().list);
                 sv.onFinishFreshAndLoad();
             }
 
