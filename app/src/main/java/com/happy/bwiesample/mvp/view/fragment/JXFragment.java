@@ -6,7 +6,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.Toast;
 
 import com.happy.bwiesample.R;
 import com.happy.bwiesample.base.BaseMvpFragment;
@@ -71,14 +70,14 @@ public class JXFragment extends BaseMvpFragment<JXPresenter> implements JXView {
                 overallXScroll = overallXScroll + dy;// 累加y值 解决滑动一半y值为0
                 if (overallXScroll <= 0) {   //设置标题的背景颜色
                     recommend_toolbar.setVisibility(View.GONE);
-                    recommend_toolbar.setBackgroundColor(Color.argb((int) 0, 227, 29, 26));
+                    recommend_toolbar.setBackgroundColor(Color.argb((int) 0, 33, 150, 243));
                 } else if (overallXScroll > 0 && overallXScroll <= height) { //滑动距离小于banner图的高度时，设置背景和字体颜色颜色透明度渐变
                     recommend_toolbar.setVisibility(View.VISIBLE);
                     float scale = (float) overallXScroll / height;
                     float alpha = (255 * scale);
-                    recommend_toolbar.setBackgroundColor(Color.argb((int) alpha, 200, 29, 26));
+                    recommend_toolbar.setBackgroundColor(Color.argb((int) alpha, 33, 150, 198));
                 } else {
-                    recommend_toolbar.setBackgroundColor(Color.argb((int) 255, 227, 29, 26));
+                    recommend_toolbar.setBackgroundColor(Color.argb((int) 255, 33, 150, 243));
                 }
             }
 
