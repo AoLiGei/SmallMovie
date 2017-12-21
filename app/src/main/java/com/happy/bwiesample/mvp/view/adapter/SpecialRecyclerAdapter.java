@@ -55,16 +55,6 @@ public class SpecialRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vi
 
     @Override
     public void onBindViewHolder(final RecyclerView.ViewHolder holder, int position) {
-        if (setOnItemClick != null) {
-            holder.itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    int position = holder.getLayoutPosition();
-                    setOnItemClick.ItemCliek(holder.itemView, position);
-                }
-            });
-        }
-
         if (holder instanceof MyViewHodler) {
             VideoType videoType = list.get(position);
             if (videoType.childList.get(0).pic != null && !videoType.childList.get(0).pic.equals("")) {
@@ -72,6 +62,19 @@ public class SpecialRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vi
             }
             if (videoType.title != null && !videoType.title.equals("") && videoType.title != "Banner") {
                 ((MyViewHodler) holder).textView.setText(videoType.title);
+            }else{
+                holder.itemView.setVisibility(View.GONE);
+            }
+
+            //点击事件
+            if (setOnItemClick != null) {
+                holder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        int position = holder.getLayoutPosition();
+                        setOnItemClick.ItemCliek(holder.itemView, position);
+                    }
+                });
             }
         }
 
