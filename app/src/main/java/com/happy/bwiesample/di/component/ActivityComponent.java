@@ -7,7 +7,6 @@ import com.happy.bwiesample.mvp.view.activity.FindPlayActivity;
 import com.happy.bwiesample.mvp.view.activity.MainActivity;
 import com.happy.bwiesample.mvp.view.activity.SearchActivity;
 import com.happy.bwiesample.mvp.view.activity.VideoPlayActivity;
-import com.happy.bwiesample.mvp.view.activity.VideoPlay_Fan_Activity;
 
 import dagger.Component;
 
@@ -22,7 +21,6 @@ public abstract class ActivityComponent {
     public abstract void inject(FindPlayActivity activity);
     public abstract void inject(SearchActivity activity);
     public abstract void inject(VideoPlayActivity activity);
-    public abstract void inject(VideoPlay_Fan_Activity activity);
     private static ActivityComponent mainComponent;
     public static ActivityComponent getActivityComponentInstance(){
         if(mainComponent==null){
