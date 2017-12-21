@@ -52,7 +52,7 @@ public class RetrofitHelper {
         }
         return videoRetrofit;
     }
-    public Retrofit getGanksRetrofitInstance(){
+    private Retrofit getGanksRetrofitInstance(){
         if(GanksRetrofit==null){
             synchronized (ganksObject){
                 if(GanksRetrofit==null){

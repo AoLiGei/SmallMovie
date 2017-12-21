@@ -39,7 +39,7 @@ public interface IVideo {
      * @return
      */
     @GET("videoDetailApi/videoDetail.do")
-    Flowable<VideoHttpResponse<VideoRes>> getVideoInfo(@Query("mediaId") String mediaId);
+    Flowable<VideoHttpResponse<VideoRes>> getVideoDetail(@Query("mediaId") String mediaId);
 
     /**
      * 影片分类列表
@@ -68,5 +68,6 @@ public interface IVideo {
      */
     @GET("Commentary/getCommentList.do")
     Flowable<VideoHttpResponse<VideoRes>> getCommentList(@Query("mediaId") String mediaId, @Query("pnum") String pnum);
+
 
 }

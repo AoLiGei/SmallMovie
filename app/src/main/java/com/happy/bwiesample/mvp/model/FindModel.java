@@ -34,7 +34,7 @@ public class FindModel {
 
 
     public void getFindData(final SetFindDataListener setFindDataListener){
-        Flowable<VideoHttpResponse<VideoRes>> homePage = retrofitHelper.getVideoRetrofitInstance().create(IVideo.class).getVideoList(catalogId,30+"");
+        Flowable<VideoHttpResponse<VideoRes>> homePage = retrofitHelper.getVideoNetClass(IVideo.class).getVideoList(catalogId,30+"");
         homePage.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(new DisposableSubscriber<VideoHttpResponse<VideoRes>>() {
