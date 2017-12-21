@@ -27,17 +27,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".mvp.view.activity.VRActivity"></activity>
+        <activity android:name=".mvp.view.activity.VRActivity" />
         <activity android:name=".mvp.view.activity.VrPlayActivity" />
         <activity android:name=".mvp.view.activity.VrPlayActivity2" />
         <activity android:name=".mvp.view.activity.VideoListActivity" />
         <activity android:name=".mvp.view.activity.SearchActivity" />
         <activity android:name=".mvp.view.activity.CaiPlayerActivity" />
-        <activity android:name=".mvp.view.activity.VideoPlayActivity"
+        <activity
+            android:name=".mvp.view.activity.VideoPlayActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:screenOrientation="portrait">
-
-        </activity>
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".mvp.view.activity.WelcomeActivity"></activity>
     </application>
 
 </manifest>

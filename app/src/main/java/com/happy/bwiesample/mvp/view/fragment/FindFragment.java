@@ -1,5 +1,6 @@
 package com.happy.bwiesample.mvp.view.fragment;
 
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.View;
@@ -13,6 +14,7 @@ import com.happy.bwiesample.entry.VideoRes;
 import com.happy.bwiesample.entry.VideoType;
 import com.happy.bwiesample.mvp.presenter.FindPresenter;
 import com.happy.bwiesample.mvp.view.FindView;
+import com.happy.bwiesample.mvp.view.activity.VideoPlayActivity;
 import com.happy.bwiesample.mvp.view.adapter.FindAdapter;
 import com.happy.bwiesample.wigdet.OverLayCardLayoutManager;
 import com.happy.bwiesample.wigdet.RenRenCallback;
@@ -116,6 +118,10 @@ public class FindFragment extends BaseMvpFragment<FindPresenter> implements Find
             @Override
             public void onItemClick(View view, int postion) {
                 Toast.makeText(getActivity(), ""+postion, Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getActivity(), VideoPlayActivity.class);
+                String dataId = mDatas.get(postion).dataId;
+                intent.putExtra("playId",dataId);
+                startActivity(intent);
             }
         });
 
