@@ -14,16 +14,20 @@ import dagger.Component;
  */
 
 @ActivityScope
-@Component(dependencies = AppComponent.class,modules = ActivityMoudle.class)
+@Component(dependencies = AppComponent.class, modules = ActivityMoudle.class)
 public abstract class ActivityComponent {
     public abstract void inject(MainActivity activity);
-    public abstract void inject(SearchActivity activity);
-    public abstract void inject(VideoPlayActivity activity);
-    private static ActivityComponent mainComponent;
-    public static ActivityComponent getActivityComponentInstance(){
-        if(mainComponent==null){
 
-            mainComponent=DaggerActivityComponent.builder()
+    public abstract void inject(SearchActivity activity);
+
+    public abstract void inject(VideoPlayActivity activity);
+
+    private static ActivityComponent mainComponent;
+
+    public static ActivityComponent getActivityComponentInstance() {
+        if (mainComponent == null) {
+
+            mainComponent = DaggerActivityComponent.builder()
                     .appComponent(MyApp.getInstance().getAppComponent())
                     .build();
         }

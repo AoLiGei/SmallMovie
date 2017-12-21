@@ -90,7 +90,7 @@ public class MyApp extends Application {
         return sApplication;
     }
 
-    public AppComponent getAppComponent() {
+    public AppComponent  getAppComponent() {
         return appComponent;
     }
 }
