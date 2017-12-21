@@ -1,5 +1,6 @@
 package com.happy.bwiesample.mvp.view.activity;
 
+import android.content.Intent;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
@@ -9,11 +10,11 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.happy.bwiesample.R;
 import com.happy.bwiesample.base.BaseMvpActivity;
 import com.happy.bwiesample.entry.VideoHttpResponse;
+import com.happy.bwiesample.entry.VideoInfo;
 import com.happy.bwiesample.entry.VideoRes;
 import com.happy.bwiesample.entry.VideoType;
 import com.happy.bwiesample.mvp.presenter.SearchPresenter;
@@ -126,7 +127,9 @@ public class SearchActivity extends BaseMvpActivity<SearchPresenter> implements 
             @Override
             public void setOnItemListener(View view, int position) {
                 VideoType videoType = list.get(position);
-                Toast.makeText(SearchActivity.this,videoType.title,Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(SearchActivity.this,VideoPlayActivity.class);
+                intent.putExtra("playId",videoType.dataId);
+                startActivity(intent);
             }
         });
     }
@@ -140,7 +143,10 @@ public class SearchActivity extends BaseMvpActivity<SearchPresenter> implements 
         hotAdapter.setListener(new OnRecyclerListener() {
             @Override
             public void setOnItemListener(View view, int position) {
-                Toast.makeText(SearchActivity.this,list.get(0).childList.get(position).title,Toast.LENGTH_SHORT).show();
+                VideoInfo videoInfo = list.get(0).childList.get(position);
+                Intent intent = new Intent(SearchActivity.this,VideoPlayActivity.class);
+                intent.putExtra("playId",videoInfo.dataId);
+                startActivity(intent);
             }
         });
     }
