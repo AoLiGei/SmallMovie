@@ -121,7 +121,7 @@ public class FindFragment extends BaseMvpFragment<FindPresenter> implements Find
                 Intent intent = new Intent(getActivity(), VideoPlayActivity.class);
                 String dataId = mDatas.get(postion).dataId;
                 intent.putExtra("playId",dataId);
-                startActivity(intent);
+                getActivity().startActivity(intent);
             }
         });
 
