@@ -25,6 +25,6 @@ public class JXModel {
     RetrofitHelper helper;
 
     public Flowable<VideoHttpResponse<VideoRes>> getVideoData(){
-        return helper.getVideoRetrofitInstance().create(IVideo.class).getHomePage();
+        return helper.getVideoNetClass(IVideo.class).getHomePage();
     }
 }

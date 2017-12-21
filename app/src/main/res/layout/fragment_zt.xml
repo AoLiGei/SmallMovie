@@ -1,35 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".mvp.view.activity.MainActivity">
+
     <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:background="#CDDC39"
-        >
+        android:layout_height="76dp"
+        android:background="@color/colorBluePrimary">
+
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="专题"
-            android:layout_marginTop="30dp"
-            android:gravity="center_horizontal"
-            android:textStyle="bold"
-            android:textSize="16sp"
-            />
+            android:layout_gravity="center"
+            android:layout_marginTop="40dp"
+            android:text="专题" />
     </android.support.v7.widget.Toolbar>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/special_rv"
+    <com.liaoinstan.springview.widget.SpringView
+        android:id="@+id/special_sp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="10dp"
+        app:header="@layout/default_header">
 
-        ></android.support.v7.widget.RecyclerView>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/special_rv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="10dp"></android.support.v7.widget.RecyclerView>
+    </com.liaoinstan.springview.widget.SpringView>
 
 </LinearLayout>

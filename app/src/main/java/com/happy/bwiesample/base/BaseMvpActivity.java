@@ -1,13 +1,20 @@
 package com.happy.bwiesample.base;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.res.Resources;
 import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.TypedValue;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
 import com.happy.bwiesample.di.component.ActivityComponent;
 import com.happy.bwiesample.helper.NetWorkHelper;
+
+import java.lang.reflect.Method;
 
 import javax.inject.Inject;
 
@@ -23,6 +30,7 @@ public abstract class BaseMvpActivity<P extends BasePresenter> extends AppCompat
         super.onCreate(savedInstanceState);
         setContentView(setLayout());
         setSystemBarTransparent(true);
+
         inject();
         p.attachView(this);
         initView();
@@ -68,4 +76,5 @@ public abstract class BaseMvpActivity<P extends BasePresenter> extends AppCompat
         super.onDestroy();
         p.dettachView();
     }
+
 }

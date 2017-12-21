@@ -1,5 +1,6 @@
 package com.happy.bwiesample.http;
 
+import com.happy.bwiesample.entry.RecommendBean;
 import com.happy.bwiesample.entry.VideoHttpResponse;
 import com.happy.bwiesample.entry.VideoRes;
 
@@ -15,6 +16,13 @@ import retrofit2.http.Query;
  */
 
 public interface IVideo {
+    /**
+     * 首页
+     *
+     * @return
+     */
+    @GET("homePageApi/homePage.do")
+    Flowable<RecommendBean> getHomePage1();
 
     /**
      * 首页
@@ -31,7 +39,7 @@ public interface IVideo {
      * @return
      */
     @GET("videoDetailApi/videoDetail.do")
-    Flowable<VideoHttpResponse<VideoRes>> getVideoInfo(@Query("mediaId") String mediaId);
+    Flowable<VideoHttpResponse<VideoRes>> getVideoDetail(@Query("mediaId") String mediaId);
 
     /**
      * 影片分类列表
@@ -60,5 +68,6 @@ public interface IVideo {
      */
     @GET("Commentary/getCommentList.do")
     Flowable<VideoHttpResponse<VideoRes>> getCommentList(@Query("mediaId") String mediaId, @Query("pnum") String pnum);
+
 
 }
