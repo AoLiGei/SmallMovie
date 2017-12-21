@@ -1,5 +1,6 @@
 package com.happy.bwiesample.mvp.view.fragment;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -14,6 +15,7 @@ import com.happy.bwiesample.entry.VideoRes;
 import com.happy.bwiesample.entry.VideoType;
 import com.happy.bwiesample.mvp.presenter.JXPresenter;
 import com.happy.bwiesample.mvp.view.JXView;
+import com.happy.bwiesample.mvp.view.activity.VideoPlayActivity;
 import com.happy.bwiesample.mvp.view.adapter.OnRecyclerListener;
 import com.happy.bwiesample.mvp.view.adapter.RecommendAdapter;
 
@@ -94,7 +96,10 @@ public class JXFragment extends BaseMvpFragment<JXPresenter> implements JXView {
         adapter.setListener(new OnRecyclerListener() {
             @Override
             public void setOnItemListener(View view, int position) {
-                Toast.makeText(getActivity(),list.get(4).childList.get(position-2).title,Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getActivity(), VideoPlayActivity.class);
+                intent.putExtra("playId",list.get(4).childList.get(position-2).dataId);
+                getActivity().startActivity(intent);
+
             }
         });
     }
