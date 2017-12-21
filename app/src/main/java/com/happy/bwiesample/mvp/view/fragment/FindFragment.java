@@ -2,28 +2,22 @@ package com.happy.bwiesample.mvp.view.fragment;
 
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
 import com.happy.bwiesample.R;
 import com.happy.bwiesample.base.BaseMvpFragment;
 import com.happy.bwiesample.entry.VideoHttpResponse;
 import com.happy.bwiesample.entry.VideoRes;
 import com.happy.bwiesample.entry.VideoType;
 import com.happy.bwiesample.mvp.presenter.FindPresenter;
-import com.happy.bwiesample.mvp.presenter.JXPresenter;
 import com.happy.bwiesample.mvp.view.FindView;
-import com.happy.bwiesample.mvp.view.JXView;
+import com.happy.bwiesample.mvp.view.adapter.FindAdapter;
 import com.happy.bwiesample.wigdet.OverLayCardLayoutManager;
 import com.happy.bwiesample.wigdet.RenRenCallback;
 
 import java.util.List;
-import java.util.ListIterator;
 
 /**
  * @Describtion
@@ -37,6 +31,7 @@ public class FindFragment extends BaseMvpFragment<FindPresenter> implements Find
     private RecyclerView recyclerView;
     private Button fab;
     private List<VideoType> mDatas;
+    private FindAdapter adapter;
 
     @Override
     public int setLayout() {
@@ -72,8 +67,6 @@ public class FindFragment extends BaseMvpFragment<FindPresenter> implements Find
         });
         final RenRenCallback callback = new RenRenCallback();
 
-        recyclerView.setLayoutManager(new OverLayCardLayoutManager(getActivity()));
-        recyclerView.setAdapter(new MyAdapter());
 
         callback.setSwipeListener(new RenRenCallback.OnSwipeListener() {
             @Override
@@ -104,6 +97,8 @@ public class FindFragment extends BaseMvpFragment<FindPresenter> implements Find
         new ItemTouchHelper(callback).attachToRecyclerView(recyclerView);
 
 
+
+
     }
 
     @Override
@@ -112,46 +107,23 @@ public class FindFragment extends BaseMvpFragment<FindPresenter> implements Find
         VideoRes ret = videoResVideoHttpResponse.getRet();
         mDatas = ret.list;
         recyclerView.setVisibility(View.VISIBLE);
+        recyclerView.setLayoutManager(new OverLayCardLayoutManager(getActivity()));
+        adapter = new FindAdapter(getActivity(), mDatas);
+        recyclerView.setAdapter(adapter);
+
+        adapter.setOnItemClickListener(new FindAdapter.MyItemClickListener() {
+            @Override
+            public void onItemClick(View view, int postion) {
+                Toast.makeText(getActivity(), ""+postion, Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
 
-        TextView mTextView;
-        ImageView mImageView;
-        TextView mNameView;
 
-        public MyViewHolder(View itemView) {
-            super(itemView);
-        }
-    }
 
-    public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
 
-        public int dp(int dp) {
-            final float density = getResources().getDisplayMetrics().density;
-            return (int) (dp * density);
-        }
 
-        @Override
-        public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-
-            final View view = LayoutInflater.from(getActivity()).inflate(R.layout.item_renren_layout, parent, false);
-            final MyViewHolder myViewHolder = new MyViewHolder(view);
-
-            return myViewHolder;
-        }
-
-        @Override
-        public void onBindViewHolder(final MyViewHolder holder, final int position) {
-            Glide.with(getActivity()).load(mDatas.get(position).pic).fitCenter().into((ImageView) holder.itemView.findViewById(R.id.image_view));
-            ((TextView) holder.itemView.findViewById(R.id.text_view)).setText(mDatas.get(position).description);
-            ((TextView) holder.itemView.findViewById(R.id.name_view)).setText(mDatas.get(position).title);
-        }
-
-        @Override
-        public int getItemCount() {
-            return mDatas.size();
-        }
-    }
 
 }
