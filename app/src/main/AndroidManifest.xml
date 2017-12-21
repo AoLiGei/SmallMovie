@@ -38,11 +38,6 @@
             android:screenOrientation="portrait">
 
         </activity>
-        <activity android:name=".mvp.view.activity.FindPlayActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:screenOrientation="portrait"
-           >
-        </activity>
     </application>
 
 </manifest>
