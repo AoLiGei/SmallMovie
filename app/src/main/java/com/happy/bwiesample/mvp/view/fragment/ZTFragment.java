@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
@@ -12,6 +13,7 @@ import com.happy.bwiesample.R;
 import com.happy.bwiesample.base.BaseMvpFragment;
 import com.happy.bwiesample.entry.RecommendBean;
 import com.happy.bwiesample.entry.VideoHttpResponse;
+import com.happy.bwiesample.entry.VideoInfo;
 import com.happy.bwiesample.entry.VideoRes;
 import com.happy.bwiesample.entry.VideoType;
 import com.happy.bwiesample.mvp.presenter.JXPresenter;
@@ -21,6 +23,7 @@ import com.happy.bwiesample.mvp.view.activity.VideoListActivity;
 import com.happy.bwiesample.mvp.view.adapter.SpecialRecyclerAdapter;
 import com.liaoinstan.springview.widget.SpringView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -37,6 +40,7 @@ public class ZTFragment extends BaseMvpFragment<ZTPresenter> implements ZTView {
     Context context;
     private RecyclerView recyclerView;
     private SpringView sv;
+    private List<VideoInfo> videoInfos;
 
     @Override
     public int setLayout() {
@@ -66,15 +70,25 @@ public class ZTFragment extends BaseMvpFragment<ZTPresenter> implements ZTView {
 
     @Override
     public void showZTList(final VideoHttpResponse<VideoRes> videoResVideoHttpResponse) {
+        VideoRes videoRes = videoResVideoHttpResponse.getRet();
+        videoInfos = new ArrayList<>();
+        for (int i=1;i<videoRes.list.size();i++){
+            if (!TextUtils.isEmpty(videoRes.list.get(i).moreURL) && !TextUtils.isEmpty(videoRes.list.get(i).title)) {
+                VideoInfo videoInfo = videoRes.list.get(i).childList.get(0);
+                videoInfo.title = videoRes.list.get(i).title;
+                videoInfo.moreURL = videoRes.list.get(i).moreURL;
+                videoInfos.add(videoInfo);
+            }
+        }
         recyclerView.setLayoutManager(new GridLayoutManager(context, 2));
-        final SpecialRecyclerAdapter adapter = new SpecialRecyclerAdapter(context, videoResVideoHttpResponse.getRet().list);
+        final SpecialRecyclerAdapter adapter = new SpecialRecyclerAdapter(context, videoInfos);
         recyclerView.setAdapter(adapter);
         adapter.setOnItemClick(new SpecialRecyclerAdapter.setOnItemClick() {
             @Override
             public void ItemCliek(View view, int position) {
                 Intent intent = new Intent(context, VideoListActivity.class);
-                intent.putExtra("url", videoResVideoHttpResponse.getRet().list.get(position).moreURL);
-                intent.putExtra("name", videoResVideoHttpResponse.getRet().list.get(position).title);
+                intent.putExtra("url",videoInfos.get(position).moreURL);
+                intent.putExtra("name", videoInfos.get(position).title);
                 startActivity(intent);
             }
         });
@@ -83,7 +97,7 @@ public class ZTFragment extends BaseMvpFragment<ZTPresenter> implements ZTView {
             @Override
             public void onRefresh() {
                 p.getCommit();
-                adapter.upDate(videoResVideoHttpResponse.getRet().list);
+                adapter.upDate(videoInfos);
                 sv.onFinishFreshAndLoad();
             }
 
