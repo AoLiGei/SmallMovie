@@ -18,18 +18,15 @@
     <android.support.v7.widget.Toolbar
         android:id="@+id/recommend_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="71dp"
-        android:visibility="gone"
+        android:layout_height="76dp"
         >
 
         <TextView
-            android:text="精选"
-            android:id="@+id/recommend_title"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:layout_marginTop="15dp"
-            />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="40dp"
+            android:text="精选" />
 
     </android.support.v7.widget.Toolbar>
 

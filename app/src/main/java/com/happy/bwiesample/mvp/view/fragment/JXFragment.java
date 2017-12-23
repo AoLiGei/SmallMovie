@@ -32,7 +32,7 @@ public class JXFragment extends BaseMvpFragment<JXPresenter> implements JXView {
     private RecyclerView recyclerView;
     private Toolbar recommend_toolbar;
 
-    private int height = 150;
+    private int height = 200;
     private int overallXScroll = 0;
     private RecommendAdapter adapter;
 
