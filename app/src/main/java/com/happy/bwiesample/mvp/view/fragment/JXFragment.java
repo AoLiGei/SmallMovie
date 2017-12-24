@@ -6,19 +6,27 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.happy.bwiesample.R;
 import com.happy.bwiesample.base.BaseMvpFragment;
 import com.happy.bwiesample.entry.VideoHttpResponse;
 import com.happy.bwiesample.entry.VideoRes;
 import com.happy.bwiesample.entry.VideoType;
+import com.happy.bwiesample.helper.NetWorkHelper;
 import com.happy.bwiesample.mvp.presenter.JXPresenter;
 import com.happy.bwiesample.mvp.view.JXView;
 import com.happy.bwiesample.mvp.view.activity.VideoPlayActivity;
 import com.happy.bwiesample.mvp.view.adapter.OnRecyclerListener;
 import com.happy.bwiesample.mvp.view.adapter.RecommendAdapter;
+import com.liaoinstan.springview.container.DefaultFooter;
+import com.liaoinstan.springview.container.DefaultHeader;
+import com.liaoinstan.springview.widget.SpringView;
 
 import java.util.List;
+
+import javax.inject.Inject;
 
 /**
  * @Describtion
@@ -29,8 +37,12 @@ import java.util.List;
 
 public class JXFragment extends BaseMvpFragment<JXPresenter> implements JXView {
 
+    @Inject
+    NetWorkHelper netWorkHelper;
     private RecyclerView recyclerView;
     private Toolbar recommend_toolbar;
+    private SpringView springView;
+    private TextView jx_Prompt;
 
     private int height = 200;
     private int overallXScroll = 0;
@@ -49,16 +61,49 @@ public class JXFragment extends BaseMvpFragment<JXPresenter> implements JXView {
     @Override
     public void initView() {
         super.initView();
+        jx_Prompt = view.findViewById(R.id.jx_Prompt);
+        springView = view.findViewById(R.id.jx_spring);
         recommend_toolbar = view.findViewById(R.id.recommend_toolbar);
         recyclerView = view.findViewById(R.id.recommend_recycler);
         LinearLayoutManager manager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(manager);
+
+        springView.setHeader(new DefaultHeader(getActivity()));
+        springView.setFooter(new DefaultFooter(getActivity()));
+
+        springView.setListener(new SpringView.OnFreshListener() {
+            @Override
+            public void onRefresh() {
+                p.showVideoData();
+
+            }
+
+            @Override
+            public void onLoadmore() {
+                Toast.makeText(getActivity(),"没有更多数据了",Toast.LENGTH_SHORT).show();
+                springView.onFinishFreshAndLoad();
+            }
+        });
     }
 
     @Override
     public void initData() {
         super.initData();
-        p.showVideoData();
+
+        //判断网络
+        if (netWorkHelper.isConnectedByState()){
+            p.showVideoData();
+            setLisenter();
+            recyclerView.setVisibility(View.VISIBLE);
+            jx_Prompt.setVisibility(View.GONE);
+        }else {
+            recyclerView.setVisibility(View.GONE);
+            jx_Prompt.setVisibility(View.VISIBLE);
+        }
+
+    }
+
+    private void setLisenter() {
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
@@ -91,6 +136,7 @@ public class JXFragment extends BaseMvpFragment<JXPresenter> implements JXView {
         adapter = new RecommendAdapter(getActivity());
         adapter.addData(list);
         recyclerView.setAdapter(adapter);
+        springView.onFinishFreshAndLoad();
         //设置监听
         adapter.setListener(new OnRecyclerListener() {
             @Override

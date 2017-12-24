@@ -8,12 +8,27 @@
     android:orientation="vertical"
     tools:context=".mvp.view.activity.MainActivity">
 
-
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recommend_recycler"
+    <com.liaoinstan.springview.widget.SpringView
+        android:id="@+id/jx_spring"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
+        android:layout_height="match_parent">
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recommend_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
+    </com.liaoinstan.springview.widget.SpringView>
+
+    <TextView
+        android:id="@+id/jx_Prompt"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="网络连接失败，请检查网络"
+        android:gravity="center"
+        android:textColor="#ffffff"
+        android:textSize="18sp"
+        android:visibility="gone"
+        />
+
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/recommend_toolbar"
