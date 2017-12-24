@@ -6,6 +6,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,7 +37,6 @@ import javax.inject.Inject;
  */
 
 public class JXFragment extends BaseMvpFragment<JXPresenter> implements JXView {
-
     @Inject
     NetWorkHelper netWorkHelper;
     private RecyclerView recyclerView;
@@ -47,6 +47,7 @@ public class JXFragment extends BaseMvpFragment<JXPresenter> implements JXView {
     private int height = 200;
     private int overallXScroll = 0;
     private RecommendAdapter adapter;
+    private ProgressBar progressBar;
 
     @Override
     public int setLayout() {
@@ -63,6 +64,7 @@ public class JXFragment extends BaseMvpFragment<JXPresenter> implements JXView {
         super.initView();
         jx_Prompt = view.findViewById(R.id.jx_Prompt);
         springView = view.findViewById(R.id.jx_spring);
+        progressBar = view.findViewById(R.id.special_pb);
         recommend_toolbar = view.findViewById(R.id.recommend_toolbar);
         recyclerView = view.findViewById(R.id.recommend_recycler);
         LinearLayoutManager manager = new LinearLayoutManager(getActivity());
@@ -80,7 +82,7 @@ public class JXFragment extends BaseMvpFragment<JXPresenter> implements JXView {
 
             @Override
             public void onLoadmore() {
-                Toast.makeText(getActivity(),"没有更多数据了",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "没有更多数据了", Toast.LENGTH_SHORT).show();
                 springView.onFinishFreshAndLoad();
             }
         });
@@ -89,16 +91,16 @@ public class JXFragment extends BaseMvpFragment<JXPresenter> implements JXView {
     @Override
     public void initData() {
         super.initData();
-
         //判断网络
-        if (netWorkHelper.isConnectedByState()){
+        if (netWorkHelper.isConnectedByState()) {
             p.showVideoData();
             setLisenter();
             recyclerView.setVisibility(View.VISIBLE);
             jx_Prompt.setVisibility(View.GONE);
-        }else {
+        } else {
             recyclerView.setVisibility(View.GONE);
             jx_Prompt.setVisibility(View.VISIBLE);
+            progressBar.setVisibility(View.GONE);
         }
 
     }
@@ -109,6 +111,7 @@ public class JXFragment extends BaseMvpFragment<JXPresenter> implements JXView {
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
             }
+
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
@@ -131,21 +134,25 @@ public class JXFragment extends BaseMvpFragment<JXPresenter> implements JXView {
 
     @Override
     public void setVideoData(VideoHttpResponse<VideoRes> videoResVideoHttpResponse) {
-        final List<VideoType> list = videoResVideoHttpResponse.getRet().list;
-        //设置适配器
-        adapter = new RecommendAdapter(getActivity());
-        adapter.addData(list);
-        recyclerView.setAdapter(adapter);
-        springView.onFinishFreshAndLoad();
-        //设置监听
-        adapter.setListener(new OnRecyclerListener() {
-            @Override
-            public void setOnItemListener(View view, int position) {
-                Intent intent = new Intent(getActivity(), VideoPlayActivity.class);
-                intent.putExtra("playId",list.get(4).childList.get(position-2).dataId);
-                getActivity().startActivity(intent);
+        if (videoResVideoHttpResponse != null) {
+            progressBar.setVisibility(View.GONE);
+            final List<VideoType> list = videoResVideoHttpResponse.getRet().list;
+            //设置适配器
+            adapter = new RecommendAdapter(getActivity());
+            adapter.addData(list);
+            recyclerView.setAdapter(adapter);
+            springView.onFinishFreshAndLoad();
+            //设置监听
+            adapter.setListener(new OnRecyclerListener() {
+                @Override
+                public void setOnItemListener(View view, int position) {
+                    Intent intent = new Intent(getActivity(), VideoPlayActivity.class);
+                    intent.putExtra("playId", list.get(4).childList.get(position - 2).dataId);
+                    getActivity().startActivity(intent);
 
-            }
-        });
+                }
+            });
+        }
     }
+
 }

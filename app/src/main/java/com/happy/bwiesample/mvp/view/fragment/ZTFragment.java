@@ -21,6 +21,7 @@ import com.happy.bwiesample.entry.VideoHttpResponse;
 import com.happy.bwiesample.entry.VideoInfo;
 import com.happy.bwiesample.entry.VideoRes;
 import com.happy.bwiesample.entry.VideoType;
+import com.happy.bwiesample.helper.NetWorkHelper;
 import com.happy.bwiesample.mvp.presenter.JXPresenter;
 import com.happy.bwiesample.mvp.presenter.ZTPresenter;
 import com.happy.bwiesample.mvp.view.ZTView;
@@ -41,24 +42,17 @@ import javax.inject.Inject;
  */
 
 public class ZTFragment extends BaseMvpFragment<ZTPresenter> implements ZTView {
-
+    @Inject
+    NetWorkHelper netWorkHelper;
     @Inject
     Context context;
     private RecyclerView recyclerView;
     private SpringView sv;
     private List<VideoInfo> videoInfos;
     private ProgressBar progressBar;
-    private TextView tv_error;
     private SpecialRecyclerAdapter adapter;
+    private TextView textView;
 
-
-    //    Handler handler = new Handler(){
-//        @Override
-//        public void handleMessage(Message msg) {
-//            super.handleMessage(msg);
-//            progressBar.setProgress();
-//        }
-//    };
     @Override
     public int setLayout() {
         return R.layout.fragment_zt;
@@ -76,14 +70,23 @@ public class ZTFragment extends BaseMvpFragment<ZTPresenter> implements ZTView {
         recyclerView = view.findViewById(R.id.special_rv);
         sv = view.findViewById(R.id.special_sp);
         progressBar = view.findViewById(R.id.special_pb);
-//        tv_error = view.findViewById(R.id.special_tv);
-//        progressBar.setMax(100);
+        textView = view.findViewById(R.id.jx_Prompt);
+
     }
 
     @Override
     public void initData() {
         super.initData();
-        p.getCommit();
+        //判断网络
+        if (netWorkHelper.isConnectedByState()) {
+            p.getCommit();
+            recyclerView.setVisibility(View.VISIBLE);
+            textView.setVisibility(View.GONE);
+        } else {
+            recyclerView.setVisibility(View.GONE);
+            textView.setVisibility(View.VISIBLE);
+            progressBar.setVisibility(View.GONE);
+        }
     }
 
     @Override

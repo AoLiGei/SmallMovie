@@ -25,17 +25,18 @@
         android:id="@+id/special_pb"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_centerInParent="true"
-        />
+        android:layout_centerInParent="true" />
 
-    <!--<TextView-->
-    <!--android:id="@+id/special_tv"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:text="抱歉网络出了小差儿"-->
-    <!--android:visibility="gone"-->
-    <!--android:gravity="center_horizontal"-->
-    <!--/>-->
+    <TextView
+        android:id="@+id/jx_Prompt"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="网络连接失败，请检查网络"
+        android:textColor="#ffffff"
+        android:textSize="18sp"
+        android:visibility="gone" />
+
 
     <com.liaoinstan.springview.widget.SpringView
         android:id="@+id/special_sp"
@@ -49,8 +50,8 @@
             android:id="@+id/special_rv"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:visibility="gone"
-            android:padding="10dp"></android.support.v7.widget.RecyclerView>
+            android:padding="10dp"
+            android:visibility="gone"></android.support.v7.widget.RecyclerView>
     </com.liaoinstan.springview.widget.SpringView>
 
 
