@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.dou361.ijkplayer.listener.OnShowThumbnailListener;
@@ -26,6 +27,7 @@ import com.happy.bwiesample.entry.VideoRes;
 import com.happy.bwiesample.helper.ScreenHelper;
 import com.happy.bwiesample.mvp.presenter.VideoPlayPresenter;
 import com.happy.bwiesample.mvp.view.VideoPlayView;
+import com.jude.swipbackhelper.SwipeBackHelper;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
@@ -44,6 +46,7 @@ public class VideoPlayActivity extends BaseMvpActivity<VideoPlayPresenter> imple
     private View videoView;
     private PlayerView playerVie;
     private VideoRes videoRes;
+    private TextView tv_title;
 
     @Override
     public void inject() {
@@ -59,10 +62,17 @@ public class VideoPlayActivity extends BaseMvpActivity<VideoPlayPresenter> imple
     @Override
     public void initView() {
         super.initView();
+        SwipeBackHelper.onCreate(this);
+        SwipeBackHelper.getCurrentPage(this)
+                .setSwipeBackEnable(true)
+                .setSwipeSensitivity(0.5f)
+                .setSwipeRelateEnable(true)
+                .setSwipeRelateOffset(300);
         playId = getIntent().getStringExtra("playId");
         hideBottomUIMenu();
         rela = findViewById(R.id.videoPlay_rela);
         videoPlayToolBar = findViewById(R.id.videoPlay_toolBar);
+        tv_title = findViewById(R.id.vrplay_title);
         videoView = LayoutInflater.from(this).inflate(R.layout.simple_player_view_player, rela);
         playerVie = new PlayerView(this, videoView);
 
@@ -113,23 +123,19 @@ public class VideoPlayActivity extends BaseMvpActivity<VideoPlayPresenter> imple
             decorView.setSystemUiVisibility(uiOptions);
         }
     }
-
-    @Subscribe(sticky = true,threadMode = ThreadMode.MAIN)
-    public void onEventPlay(){
-
-    }
-
     @Override
     public void setMovieRes(VideoHttpResponse<VideoRes> videoInfo) {
         //判断网络请求的url是都为空，为空加载本地默认资源
         videoRes = videoInfo.getRet();
-        if(videoRes.getVideoUrl().isEmpty()){
-            playLocalMovie();
-        }else {
-            playNetMovie(videoRes.getVideoUrl(), videoRes.pic, videoRes.title);
+        if(videoRes!=null){
+            if(videoRes.getVideoUrl().isEmpty()){
+                playLocalMovie();
+            }else {
+                tv_title.setText(videoRes.title);
+                playNetMovie(videoRes.getVideoUrl(), videoRes.title, videoRes.pic);
+            }
         }
     }
-
     //播放本地资源
     protected void  playLocalMovie(){
         playerVie.setPlaySource("http://youkesupload.oss-cn-hangzhou.aliyuncs.com/0e9641acc8acebcf2cd8657f334d5cca6aba480b/c4e73cf9957556f24f74e95320ddcce692d84633.mp4 ")
@@ -181,6 +187,7 @@ public class VideoPlayActivity extends BaseMvpActivity<VideoPlayPresenter> imple
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        SwipeBackHelper.onDestroy(this);
         if (playerVie != null) {
             playerVie.onDestroy();
         }

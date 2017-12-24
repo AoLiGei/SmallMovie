@@ -13,7 +13,6 @@
         ></com.youth.banner.Banner>
 
     <include layout="@layout/search_layout"
-        android:layout_gravity="center_horizontal"
         />
 
 </FrameLayout>

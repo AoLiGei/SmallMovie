@@ -94,6 +94,12 @@
             </RelativeLayout>
 
         <!--展示历史搜索的控件-->
+          <com.happy.bwiesample.wigdet.SearchHistory
+              android:id="@+id/search_history"
+              style="@style/lmatch_hwrap_style"
+              android:layout_below="@+id/tv_search_history"
+              android:layout_marginLeft="@dimen/standard_xs_small_margin"
+              android:layout_marginRight="@dimen/standard_xs_small_margin"></com.happy.bwiesample.wigdet.SearchHistory>
 
 
         </LinearLayout>
