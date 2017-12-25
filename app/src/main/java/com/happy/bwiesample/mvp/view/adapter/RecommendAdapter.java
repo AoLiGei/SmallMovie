@@ -11,13 +11,13 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.happy.bwiesample.R;
 import com.happy.bwiesample.entry.VideoInfo;
 import com.happy.bwiesample.entry.VideoType;
 import com.happy.bwiesample.mvp.view.activity.SearchActivity;
+import com.happy.bwiesample.mvp.view.activity.VideoPlayActivity;
 import com.youth.banner.Banner;
 import com.youth.banner.listener.OnBannerListener;
 import com.youth.banner.loader.ImageLoader;
@@ -106,8 +106,11 @@ public class RecommendAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             ((BannerViewHolder) holder).banner.setOnBannerListener(new OnBannerListener() {
                 @Override
                 public void OnBannerClick(int position) {
+                    //跳转到播放界面
                     VideoInfo videoInfo = list.get(0).childList.get(position);
-                    Toast.makeText(context,videoInfo.title,Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(context, VideoPlayActivity.class);
+                    intent.putExtra("playId",videoInfo.dataId);
+                    context.startActivity(intent);
                 }
             });
         }

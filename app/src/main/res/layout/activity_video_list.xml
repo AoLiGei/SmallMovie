@@ -31,6 +31,24 @@
             android:text="分类" />
     </android.support.v7.widget.Toolbar>
 
+    <TextView
+        android:id="@+id/jx_Prompt"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="网络连接失败，请检查网络"
+        android:gravity="center"
+        android:textColor="#ffffff"
+        android:textSize="18sp"
+        android:visibility="gone"
+        />
+
+    <ProgressBar
+        android:id="@+id/special_pb"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_centerInParent="true"
+        />
+
     <com.liaoinstan.springview.widget.SpringView
         android:id="@+id/video_list_sp"
         android:layout_width="match_parent"

@@ -8,28 +8,47 @@
     android:orientation="vertical"
     tools:context=".mvp.view.activity.MainActivity">
 
-
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recommend_recycler"
+    <com.liaoinstan.springview.widget.SpringView
+        android:id="@+id/jx_spring"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
+        android:layout_height="match_parent">
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recommend_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
+    </com.liaoinstan.springview.widget.SpringView>
+
+    <TextView
+        android:id="@+id/jx_Prompt"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="网络连接失败，请检查网络"
+        android:gravity="center"
+        android:textColor="#ffffff"
+        android:textSize="18sp"
+        android:visibility="gone"
+        />
+
+    <ProgressBar
+        android:id="@+id/special_pb"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        />
+
+
     <android.support.v7.widget.Toolbar
         android:id="@+id/recommend_toolbar"
         android:layout_width="match_parent"
         android:layout_height="76dp"
-        android:visibility="gone"
         >
 
         <TextView
-            android:text="精选"
-            android:id="@+id/recommend_title"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:textSize="18sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginTop="40dp"
-            />
+            android:text="精选" />
 
     </android.support.v7.widget.Toolbar>
 

@@ -1,10 +1,13 @@
 package com.happy.bwiesample.mvp.view.fragment;
 
 import android.content.Intent;
+import android.graphics.drawable.AnimationDrawable;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.happy.bwiesample.R;
@@ -35,6 +38,9 @@ public class FindFragment extends BaseMvpFragment<FindPresenter> implements Find
     private Button fab;
     private List<VideoType> mDatas;
     private FindAdapter adapter;
+    private TextView tv;
+    private ImageView imageView;
+    private AnimationDrawable anim;
 
     @Override
     public int setLayout() {
@@ -52,19 +58,31 @@ public class FindFragment extends BaseMvpFragment<FindPresenter> implements Find
         super.initView();
         recyclerView = view.findViewById(R.id.recycler_view);
         fab = view.findViewById(R.id.fab);
+        tv = view.findViewById(R.id.find_no);
+        imageView = view.findViewById(R.id.find_jia);
 
     }
 
     @Override
     public void initData() {
         super.initData();
+
+        anim = (AnimationDrawable) getResources().getDrawable(R.drawable.img);
+        imageView.setBackground(anim);
+        anim.setOneShot(false);
+        anim.start();
+        recyclerView.setLayoutManager(new OverLayCardLayoutManager(getActivity()));
+
         p.showData();
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                tv.setVisibility(View.GONE);
+                imageView.setVisibility(View.VISIBLE);
                 recyclerView.setVisibility(View.GONE);
                 p.showData();
-                recyclerView.getAdapter().notifyDataSetChanged();
+//                recyclerView.getAdapter().notifyDataSetChanged();
 
             }
         });
@@ -109,17 +127,19 @@ public class FindFragment extends BaseMvpFragment<FindPresenter> implements Find
 
         VideoRes ret = videoResVideoHttpResponse.getRet();
         mDatas = ret.list;
+        tv.setVisibility(View.VISIBLE);
+        imageView.setVisibility(View.GONE);
         recyclerView.setVisibility(View.VISIBLE);
-        recyclerView.setLayoutManager(new OverLayCardLayoutManager(getActivity()));
         adapter = new FindAdapter(getActivity(), mDatas);
         recyclerView.setAdapter(adapter);
 
         adapter.setOnItemClickListener(new FindAdapter.MyItemClickListener() {
             @Override
             public void onItemClick(View view, int postion) {
-
+                Toast.makeText(getActivity(), "" + postion, Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getActivity(), VideoPlayActivity.class);
-                intent.putExtra("playId",mDatas.get(postion).dataId);
+                String dataId = mDatas.get(postion).dataId;
+                intent.putExtra("playId", dataId);
                 getActivity().startActivity(intent);
             }
         });
