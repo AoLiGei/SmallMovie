@@ -18,12 +18,18 @@ import com.happy.bwiesample.R;
  */
 
 public class TheamCircleView extends View {
-
+    boolean isShowCircle = false;
     private int colors;
     private Paint paint;
     private int radius;
     private int width;
     private int height;
+    private Paint paint1;
+
+    public void setColors(int colors) {
+        this.colors = colors;
+
+    }
 
     public TheamCircleView(Context context) {
         this(context, null);
@@ -39,13 +45,21 @@ public class TheamCircleView extends View {
     }
 
     private void init(Context context, AttributeSet attrs) {
-        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.TheamCircleView);
-        colors = typedArray.getColor(R.styleable.TheamCircleView_colors, 0xffff0000);
+//        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.TheamCircleView);
+//        colors = typedArray.getColor(R.styleable.TheamCircleView_colors, 0xffff0000);
 
         paint = new Paint();
         paint.setStyle(Paint.Style.FILL);
         paint.setStrokeWidth(10);
+        paint.setAntiAlias(true);
         radius = Math.min(width, height);
+
+        paint1 = new Paint();
+        paint1.setStyle(Paint.Style.STROKE);
+        paint1.setStrokeWidth(2);
+        paint1.setAntiAlias(true);
+        paint1.setColor(Color.WHITE);
+        radius = Math.min(width, height) - 20;
 
 
     }
@@ -64,5 +78,11 @@ public class TheamCircleView extends View {
         //paint bg
         paint.setColor(colors);     //设置画笔颜色为随机颜色
         canvas.drawCircle(width, height, 50, paint);        //利用canvas画一个圆
+        if (isShowCircle) {
+            canvas.drawCircle(width, height, 50, paint1);      //利用canvas画一个圆
+
+        }
+
     }
+
 }

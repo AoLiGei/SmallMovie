@@ -64,11 +64,11 @@ public class VideoListActivity extends BaseActivity {
     private ProgressBar progressBar;
     private TextView textView;
 
-
     @Override
     public int setLayout() {
         return R.layout.activity_video_list;
     }
+
 
 
     @Override
