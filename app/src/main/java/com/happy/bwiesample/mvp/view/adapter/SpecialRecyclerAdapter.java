@@ -9,9 +9,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.happy.bwiesample.R;
-import com.happy.bwiesample.entry.RecommendBean;
 import com.happy.bwiesample.entry.VideoInfo;
-import com.happy.bwiesample.entry.VideoType;
 import com.happy.bwiesample.helper.GlideHelper;
 
 import java.util.ArrayList;
@@ -73,8 +71,6 @@ public class SpecialRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vi
                 });
             }
         }
-
-
     }
 
     @Override

@@ -1,14 +1,10 @@
 package com.happy.bwiesample.mvp.view.activity;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
@@ -55,8 +51,6 @@ public class MainActivity extends BaseActivity{
             @Override
             public void onClick(View v) {
                 //TODO
-
-
                 startActivity(new Intent(MainActivity.this,VRActivity.class));
             }
         });
