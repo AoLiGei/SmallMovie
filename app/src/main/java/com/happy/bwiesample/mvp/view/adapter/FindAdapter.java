@@ -52,7 +52,10 @@ public class FindAdapter extends RecyclerView.Adapter<FindAdapter.MyViewHolder> 
 
     @Override
     public int getItemCount() {
-        return mDatas.size();
+        if (mDatas != null){
+            return mDatas.size();
+        }
+        return 0;
     }
 
     @Override

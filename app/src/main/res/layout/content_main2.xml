@@ -8,11 +8,31 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     >
+    <TextView
+        android:id="@+id/find_no"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textColor="@color/white"
+        android:text="没有了,请换一批"
+        android:gravity="center"
+        android:visibility="gone"
+        />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
+    <ImageView
+        android:id="@+id/find_jia"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        />
+
+
+
+
+
 
 
 </RelativeLayout>
