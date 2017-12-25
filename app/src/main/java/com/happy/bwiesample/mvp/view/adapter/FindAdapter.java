@@ -43,8 +43,6 @@ public class FindAdapter extends RecyclerView.Adapter<FindAdapter.MyViewHolder> 
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent intent = new Intent(getActivity(), FindPlayActivity.class);
-//                startActivity(intent);
                 mItemClickListener.onItemClick(view, myViewHolder.getAdapterPosition());
 
             }
@@ -54,7 +52,10 @@ public class FindAdapter extends RecyclerView.Adapter<FindAdapter.MyViewHolder> 
 
     @Override
     public int getItemCount() {
-        return mDatas.size();
+        if (mDatas != null){
+            return mDatas.size();
+        }
+        return 0;
     }
 
     @Override
