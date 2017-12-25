@@ -55,4 +55,4 @@
     </com.liaoinstan.springview.widget.SpringView>
 
 
-</RelativeLayout>
+</LinearLayout>
