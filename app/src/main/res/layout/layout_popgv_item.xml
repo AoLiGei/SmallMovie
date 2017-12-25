@@ -5,6 +5,7 @@
     android:layout_height="wrap_content">
 
     <com.happy.bwiesample.wigdet.TheamCircleView
+        android:id="@+id/circleView"
         android:layout_width="100dp"
         android:layout_height="100dp"
         app:colors="#f00" />

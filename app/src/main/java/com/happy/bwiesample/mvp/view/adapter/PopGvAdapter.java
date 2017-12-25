@@ -1,6 +1,7 @@
 package com.happy.bwiesample.mvp.view.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -8,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.happy.bwiesample.R;
+import com.happy.bwiesample.wigdet.TheamCircleView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,13 +22,17 @@ import java.util.List;
 
 public class PopGvAdapter extends BaseAdapter {
     Context context;
-    List<String>list = new ArrayList<>();
+    List<String> list = new ArrayList<>();
+    String[] color = new String[]{"#2196F3", "#F44336", "#795548", "#4CAF50"
+            , "#9C27B0", "#009688", "#E91E63", "#673AB7"
+            , "#FF9800", "#3F51B5", "#00BCD4", "#8BC34A"
+            , "#CDDC39", "#FF5722", "#607D8B", "#000000"};
 
     public PopGvAdapter(Context context) {
         this.context = context;
 
-        for (int i=0;i<16;i++){
-            list.add("哈哈"+i);
+        for (int i = 0; i < 16; i++) {
+            list.add("哈哈" + i);
         }
     }
 
@@ -49,11 +55,10 @@ public class PopGvAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
 
         //加载布局为一个视图
-        View view=View.inflate(context,R.layout.layout_popgv_item,null);
-
+        View view = View.inflate(context, R.layout.layout_popgv_item, null);
+        TheamCircleView circleView = view.findViewById(R.id.circleView);
+        circleView.setColors(Color.parseColor(color[position]));
         //在view视图中查找id为image_photo的控件
-//        TextView tv_name= (TextView) view.findViewById(R.id.tv);
-//        tv_name.setText(list.get(position));
         return view;
     }
 }
