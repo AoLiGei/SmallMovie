@@ -1,6 +1,7 @@
 package com.happy.bwiesample.mvp.view.fragment;
 
 import android.content.Intent;
+import android.graphics.drawable.AnimationDrawable;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.View;
@@ -18,6 +19,7 @@ import com.happy.bwiesample.mvp.presenter.FindPresenter;
 import com.happy.bwiesample.mvp.view.FindView;
 import com.happy.bwiesample.mvp.view.activity.VideoPlayActivity;
 import com.happy.bwiesample.mvp.view.adapter.FindAdapter;
+import com.happy.bwiesample.wigdet.OverLayCardLayoutManager;
 import com.happy.bwiesample.wigdet.RenRenCallback;
 
 import java.util.List;
@@ -38,6 +40,7 @@ public class FindFragment extends BaseMvpFragment<FindPresenter> implements Find
     private FindAdapter adapter;
     private TextView tv;
     private ImageView imageView;
+    private AnimationDrawable anim;
 
     @Override
     public int setLayout() {
@@ -63,6 +66,13 @@ public class FindFragment extends BaseMvpFragment<FindPresenter> implements Find
     @Override
     public void initData() {
         super.initData();
+
+        anim = (AnimationDrawable) getResources().getDrawable(R.drawable.img);
+        imageView.setBackground(anim);
+        anim.setOneShot(false);
+        anim.start();
+        recyclerView.setLayoutManager(new OverLayCardLayoutManager(getActivity()));
+
         p.showData();
 
         fab.setOnClickListener(new View.OnClickListener() {
@@ -72,7 +82,7 @@ public class FindFragment extends BaseMvpFragment<FindPresenter> implements Find
                 imageView.setVisibility(View.VISIBLE);
                 recyclerView.setVisibility(View.GONE);
                 p.showData();
-                recyclerView.getAdapter().notifyDataSetChanged();
+//                recyclerView.getAdapter().notifyDataSetChanged();
 
             }
         });
