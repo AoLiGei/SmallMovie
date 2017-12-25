@@ -3,6 +3,7 @@ package com.happy.bwiesample.di.component;
 import com.happy.bwiesample.app.MyApp;
 import com.happy.bwiesample.di.moudle.FragmentMoudle;
 import com.happy.bwiesample.di.scope.FragmentScope;
+import com.happy.bwiesample.mvp.view.fragment.CommentFragment;
 import com.happy.bwiesample.mvp.view.fragment.FindFragment;
 import com.happy.bwiesample.mvp.view.fragment.JXFragment;
 import com.happy.bwiesample.mvp.view.fragment.MineFragment;
@@ -29,6 +30,7 @@ public abstract class FragmentComponent {
     public abstract void inject(MineFragment mineFragment);
     public abstract void inject(VRImgFragment vrImgFragment);
     public abstract void inject(VRVideoFragment vrVideoFragment);
+    public abstract void inject(CommentFragment commentFragment);
     private static FragmentComponent fragmentComponent;
     public static FragmentComponent getFragmentComponentInstance(){
         if(fragmentComponent==null) {
