@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,6 +20,7 @@ import com.happy.bwiesample.base.BaseMvpActivity;
 import com.happy.bwiesample.entry.VideoHttpResponse;
 import com.happy.bwiesample.entry.VideoInfo;
 import com.happy.bwiesample.entry.VideoListBean;
+import com.happy.bwiesample.helper.NetWorkHelper;
 import com.happy.bwiesample.helper.RetrofitHelper;
 import com.happy.bwiesample.http.INews;
 import com.happy.bwiesample.http.IVideo;
@@ -47,6 +49,7 @@ import retrofit2.Retrofit;
  * 影片分类列表Activity
  */
 public class VideoListActivity extends BaseActivity {
+    NetWorkHelper netWorkHelper = new NetWorkHelper(this);
     @Inject
     Context context;
     @Inject
@@ -58,6 +61,9 @@ public class VideoListActivity extends BaseActivity {
     private TextView tv_head;
     private String name;
     private SpringView springView;
+    private ProgressBar progressBar;
+    private TextView textView;
+
 
     @Override
     public int setLayout() {
@@ -72,6 +78,8 @@ public class VideoListActivity extends BaseActivity {
         iv_back = findViewById(R.id.video_list_head_back);
         tv_head = findViewById(R.id.video_list_head_tv);
         springView = findViewById(R.id.video_list_sp);
+        progressBar = findViewById(R.id.special_pb);
+        textView = findViewById(R.id.jx_Prompt);
 
         Intent intent = getIntent();
         url = intent.getStringExtra("url");
@@ -92,7 +100,16 @@ public class VideoListActivity extends BaseActivity {
     @Override
     public void initData() {
         super.initData();
-        getByOkGo(url);
+        //判断网络
+        if (netWorkHelper.isConnectedByState()) {
+            getByOkGo(url);
+            videolist_rv.setVisibility(View.VISIBLE);
+            textView.setVisibility(View.GONE);
+        } else {
+            videolist_rv.setVisibility(View.GONE);
+            textView.setVisibility(View.VISIBLE);
+            progressBar.setVisibility(View.GONE);
+        }
 
     }
 
@@ -119,46 +136,50 @@ public class VideoListActivity extends BaseActivity {
 
             @Override
             public void onResponse(Call call, final Response response) throws IOException {
-                final String s = response.body().string();
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        Gson gson1 = new Gson();
-                        VideoListBean videoListBean = gson1.fromJson(s, VideoListBean.class);
-                        list = videoListBean.getRet().getList();
-                        final VideoListAdapter adapter = new VideoListAdapter(VideoListActivity.this, list);
-                        videolist_rv.setLayoutManager(new GridLayoutManager(VideoListActivity.this, 3));
-                        videolist_rv.setAdapter(adapter);
+                if (response != null) {
+                    final String s = response.body().string();
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            progressBar.setVisibility(View.GONE);
+                            Gson gson1 = new Gson();
+                            VideoListBean videoListBean = gson1.fromJson(s, VideoListBean.class);
+                            list = videoListBean.getRet().getList();
+                            final VideoListAdapter adapter = new VideoListAdapter(VideoListActivity.this, list);
+                            videolist_rv.setLayoutManager(new GridLayoutManager(VideoListActivity.this, 3));
+                            videolist_rv.setAdapter(adapter);
 
-                        //设置点击事件,
-                        adapter.setOnItemClick(new VideoListAdapter.setOnItemClick() {
-                            @Override
-                            public void ItemCliek(View view, int position) {
-                                Intent intent = new Intent(VideoListActivity.this,VideoPlayActivity.class);
-                                VideoListBean.RetBean.ListBean bean = list.get(position);
-                                intent.putExtra("playId",bean.getDataId());
-                                intent.putExtra("loadURL",bean .getLoadURL());
-                                startActivity(intent);
-                            }
-                        });
+                            //设置点击事件,
+                            adapter.setOnItemClick(new VideoListAdapter.setOnItemClick() {
+                                @Override
+                                public void ItemCliek(View view, int position) {
+                                    Intent intent = new Intent(VideoListActivity.this, VideoPlayActivity.class);
+                                    VideoListBean.RetBean.ListBean bean = list.get(position);
+                                    intent.putExtra("playId", bean.getDataId());
+                                    intent.putExtra("loadURL", bean.getLoadURL());
+                                    startActivity(intent);
+                                }
+                            });
 
-                        springView.setListener(new SpringView.OnFreshListener() {
-                            @Override
-                            public void onRefresh() {
-                                getByOkGo(url);
-                                adapter.upDate(list);
-                                springView.onFinishFreshAndLoad();
-                            }
+                            springView.setListener(new SpringView.OnFreshListener() {
+                                @Override
+                                public void onRefresh() {
+                                    getByOkGo(url);
+                                    adapter.upDate(list);
+                                    springView.onFinishFreshAndLoad();
+                                }
 
-                            @Override
-                            public void onLoadmore() {
-                                adapter.addData(list);
-                            }
-                        });
+                                @Override
+                                public void onLoadmore() {
+                                    adapter.addData(list);
+                                }
+                            });
 
-                    }
-                });
+                        }
+                    });
+                }
             }
+
         });
 
     }

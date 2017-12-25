@@ -1,7 +1,5 @@
 package com.happy.bwiesample.mvp.view.fragment;
 
-import android.content.Intent;
-import android.graphics.drawable.AnimationDrawable;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.View;
@@ -17,7 +15,6 @@ import com.happy.bwiesample.entry.VideoRes;
 import com.happy.bwiesample.entry.VideoType;
 import com.happy.bwiesample.mvp.presenter.FindPresenter;
 import com.happy.bwiesample.mvp.view.FindView;
-import com.happy.bwiesample.mvp.view.activity.VideoPlayActivity;
 import com.happy.bwiesample.mvp.view.adapter.FindAdapter;
 import com.happy.bwiesample.wigdet.OverLayCardLayoutManager;
 import com.happy.bwiesample.wigdet.RenRenCallback;
@@ -29,7 +26,7 @@ import java.util.List;
  * @Author LiAng
  * @Date 2017/12/15
  * @Time 19:11
- * 发现页面
+ *  发现页面
  */
 
 public class FindFragment extends BaseMvpFragment<FindPresenter> implements FindView {
@@ -65,16 +62,6 @@ public class FindFragment extends BaseMvpFragment<FindPresenter> implements Find
     @Override
     public void initData() {
         super.initData();
-        AnimationDrawable anim = new AnimationDrawable();
-        anim = (AnimationDrawable) getResources().getDrawable(R.drawable.img);
-        imageView.setBackground(anim);
-        anim.setOneShot(false);
-        anim.start();
-        anim.start();
-        //适配
-        recyclerView.setLayoutManager(new OverLayCardLayoutManager(getActivity()));
-
-
         p.showData();
 
         fab.setOnClickListener(new View.OnClickListener() {
@@ -84,7 +71,7 @@ public class FindFragment extends BaseMvpFragment<FindPresenter> implements Find
                 imageView.setVisibility(View.VISIBLE);
                 recyclerView.setVisibility(View.GONE);
                 p.showData();
-//                recyclerView.getAdapter().notifyDataSetChanged();
+                recyclerView.getAdapter().notifyDataSetChanged();
 
             }
         });
@@ -120,6 +107,8 @@ public class FindFragment extends BaseMvpFragment<FindPresenter> implements Find
         new ItemTouchHelper(callback).attachToRecyclerView(recyclerView);
 
 
+
+
     }
 
     @Override
@@ -132,8 +121,6 @@ public class FindFragment extends BaseMvpFragment<FindPresenter> implements Find
         recyclerView.setVisibility(View.VISIBLE);
         adapter = new FindAdapter(getActivity(), mDatas);
         recyclerView.setAdapter(adapter);
-//        recyclerView.getAdapter().notifyDataSetChanged();
-
 
         adapter.setOnItemClickListener(new FindAdapter.MyItemClickListener() {
             @Override
@@ -146,8 +133,12 @@ public class FindFragment extends BaseMvpFragment<FindPresenter> implements Find
             }
         });
 
-
     }
+
+
+
+
+
 
 
 }

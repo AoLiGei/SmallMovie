@@ -12,6 +12,7 @@ import com.happy.bwiesample.helper.RetrofitHelper;
 import com.happy.bwiesample.helper.SDCardHelper;
 import com.happy.bwiesample.helper.SPHelper;
 import com.happy.bwiesample.helper.ScreenHelper;
+import com.happy.bwiesample.helper.SearchDBHelper;
 import com.happy.bwiesample.helper.ToastHelper;
 
 import javax.inject.Singleton;
@@ -100,6 +101,13 @@ public class AppMoudle {
     @Provides
     SDCardHelper getSDCardHelper(){
         return new SDCardHelper();
+    }
+
+    //搜索记录的数据库
+    @Singleton
+    @Provides
+    SearchDBHelper getSearchHelper(Context context){
+        return new SearchDBHelper(context);
     }
 
 

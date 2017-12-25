@@ -41,12 +41,6 @@ public abstract class BaseMvpActivity<P extends BasePresenter> extends AppCompat
     public abstract void inject();
     public abstract int setLayout();
     private void setSystemBarTransparent(boolean on) {
-
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-//            // KITKAT解决方案
-//            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-//            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-//        }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             Window win = getWindow();
             WindowManager.LayoutParams winParams = win.getAttributes();
@@ -58,7 +52,6 @@ public abstract class BaseMvpActivity<P extends BasePresenter> extends AppCompat
             }
             win.setAttributes(winParams);
         }
-
     }
 
     public void initView(){

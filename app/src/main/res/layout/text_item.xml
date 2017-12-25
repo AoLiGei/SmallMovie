@@ -8,9 +8,9 @@
     >
 
     <View
-        android:layout_width="5dp"
+        android:layout_width="2dp"
         android:layout_height="20dp"
-        android:background="#f0f0"
+        android:background="#81980B"
         />
 
     <TextView
