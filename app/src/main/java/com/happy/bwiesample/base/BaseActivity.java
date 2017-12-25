@@ -1,21 +1,11 @@
 package com.happy.bwiesample.base;
-
-import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.TypedValue;
 import android.view.Window;
 import android.view.WindowManager;
-
-import java.lang.reflect.Method;
-
 public abstract class BaseActivity extends AppCompatActivity {
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,8 +14,6 @@ public abstract class BaseActivity extends AppCompatActivity {
         initView();
         initData();
     }
-
-
     public abstract int setLayout();
     private void setSystemBarTransparent(boolean on) {
 
@@ -53,7 +41,6 @@ public abstract class BaseActivity extends AppCompatActivity {
     public void initData(){
         Intent intent = getIntent();
     }
-
 
 
 }
