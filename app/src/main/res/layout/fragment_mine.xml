@@ -119,6 +119,7 @@
         <RelativeLayout
             android:id="@+id/rl_them"
             style="@style/mine_lin_style"
+
             android:gravity="center_vertical">
 
             <TextView
