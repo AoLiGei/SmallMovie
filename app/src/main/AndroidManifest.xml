@@ -21,13 +21,7 @@
         <activity
             android:name=".mvp.view.activity.MainActivity"
             android:launchMode="singleTask"
-            android:theme="@style/MyAppCompatTheme.NoActionBar.FullScreen_Splash">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-
+           >
         </activity>
         <activity android:name=".mvp.view.activity.VRActivity" />
         <activity android:name=".mvp.view.activity.VrPlayActivity" />
@@ -38,7 +32,15 @@
         <activity
             android:name=".mvp.view.activity.VideoPlayActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
+        <activity android:name=".mvp.view.activity.SplashActivity"
+            android:theme="@style/MyAppCompatTheme.NoActionBar.FullScreen_Splash">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

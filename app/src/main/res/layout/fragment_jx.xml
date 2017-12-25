@@ -14,11 +14,10 @@
         android:id="@+id/recommend_recycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
-
     <android.support.v7.widget.Toolbar
         android:id="@+id/recommend_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="71dp"
+        android:layout_height="76dp"
         android:visibility="gone"
         >
 
@@ -29,7 +28,7 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:textSize="18sp"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="40dp"
             />
 
     </android.support.v7.widget.Toolbar>

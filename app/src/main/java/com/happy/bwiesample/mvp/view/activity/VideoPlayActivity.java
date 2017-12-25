@@ -4,10 +4,11 @@ import android.content.Context;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Build;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +16,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 import com.bumptech.glide.Glide;
 import com.dou361.ijkplayer.listener.OnShowThumbnailListener;
 import com.dou361.ijkplayer.widget.PlayStateParams;
@@ -24,20 +24,17 @@ import com.happy.bwiesample.R;
 import com.happy.bwiesample.base.BaseMvpActivity;
 import com.happy.bwiesample.entry.VideoHttpResponse;
 import com.happy.bwiesample.entry.VideoRes;
-import com.happy.bwiesample.helper.ScreenHelper;
 import com.happy.bwiesample.mvp.presenter.VideoPlayPresenter;
 import com.happy.bwiesample.mvp.view.VideoPlayView;
+import com.happy.bwiesample.mvp.view.fragment.CommentFragment;
+import com.happy.bwiesample.mvp.view.fragment.JJFragment;
 import com.jude.swipbackhelper.SwipeBackHelper;
-
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
 
 import javax.inject.Inject;
 
 public class VideoPlayActivity extends BaseMvpActivity<VideoPlayPresenter> implements VideoPlayView {
 
     private RelativeLayout rela;
-
     private String playId;
 
     @Inject
@@ -47,6 +44,9 @@ public class VideoPlayActivity extends BaseMvpActivity<VideoPlayPresenter> imple
     private PlayerView playerVie;
     private VideoRes videoRes;
     private TextView tv_title;
+    private ViewPager play_vp;
+    private TabLayout play_tab;
+    private ImageView iv_return;
 
     @Override
     public void inject() {
@@ -75,6 +75,40 @@ public class VideoPlayActivity extends BaseMvpActivity<VideoPlayPresenter> imple
         tv_title = findViewById(R.id.vrplay_title);
         videoView = LayoutInflater.from(this).inflate(R.layout.simple_player_view_player, rela);
         playerVie = new PlayerView(this, videoView);
+        play_tab = findViewById(R.id.videoPlay_tab);
+        play_vp = findViewById(R.id.videoPlay_vp);
+        iv_return = findViewById(R.id.videoPlay_iv_return);
+        iv_return.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+        play_tab.setTabMode(TabLayout.MODE_FIXED);
+        play_tab.addTab(play_tab.newTab().setText("简介"));
+        play_tab.addTab(play_tab.newTab().setText("评论"));
+        play_tab.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+
+                if(tab.getText().equals("简介")){
+                    play_vp.setCurrentItem(0);
+                }else if(tab.getText().equals("评论")){
+                    play_vp.setCurrentItem(1);
+                }
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+
 
 
     }
@@ -109,7 +143,7 @@ public class VideoPlayActivity extends BaseMvpActivity<VideoPlayPresenter> imple
             rela.setBackgroundColor(Color.RED);
             rela.setLayoutParams(params);
         }
-    }
+}
     protected void hideBottomUIMenu() {
         //隐藏虚拟按键，并且全屏
         if (Build.VERSION.SDK_INT > 11 && Build.VERSION.SDK_INT < 19) { // lower api
@@ -128,6 +162,21 @@ public class VideoPlayActivity extends BaseMvpActivity<VideoPlayPresenter> imple
         //判断网络请求的url是都为空，为空加载本地默认资源
         videoRes = videoInfo.getRet();
         if(videoRes!=null){
+            play_vp.setAdapter(new FragmentPagerAdapter(getSupportFragmentManager()) {
+                @Override
+                public Fragment getItem(int position) {
+                    if(position==0){
+                        return JJFragment.getJJFragmentInstance(videoRes);
+                    }else {
+                        return CommentFragment.getCommentFragmentInstance(playId);
+                    }
+
+                }
+                @Override
+                public int getCount() {
+                    return 2;
+                }
+            });
             if(videoRes.getVideoUrl().isEmpty()){
                 playLocalMovie();
             }else {
@@ -172,6 +221,10 @@ public class VideoPlayActivity extends BaseMvpActivity<VideoPlayPresenter> imple
         super.onPause();
         if (playerVie != null) {
             playerVie.onPause();
+        }
+        if (Build.VERSION.SDK_INT > 11 && Build.VERSION.SDK_INT < 19) { // lower api
+            View v = this.getWindow().getDecorView();
+            v.setSystemUiVisibility(View.VISIBLE);
         }
 
     }

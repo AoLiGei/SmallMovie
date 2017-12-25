@@ -4,6 +4,7 @@ import android.text.TextUtils;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -13,7 +14,7 @@ import java.util.List;
  * @Time 10:58
  */
 
-public class VideoRes {
+public class VideoRes implements Serializable{
     public
     @SerializedName("list")
     List<VideoType> list;
