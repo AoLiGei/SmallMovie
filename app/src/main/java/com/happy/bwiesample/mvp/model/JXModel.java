@@ -7,7 +7,9 @@ import com.happy.bwiesample.http.IVideo;
 
 import javax.inject.Inject;
 
-import io.reactivex.Flowable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
+import io.reactivex.subscribers.DisposableSubscriber;
 
 /**
  * @Describtion
@@ -24,7 +26,29 @@ public class JXModel {
     @Inject
     RetrofitHelper helper;
 
-    public Flowable<VideoHttpResponse<VideoRes>> getVideoData(){
-        return helper.getVideoNetClass(IVideo.class).getHomePage();
+    public void getVideoData(final GetHomePage getHomePage){
+         helper.getVideoNetClass(IVideo.class).getHomePage()
+                .subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableSubscriber<VideoHttpResponse<VideoRes>>() {
+                    @Override
+                    public void onNext(VideoHttpResponse<VideoRes> videoResVideoHttpResponse) {
+                       getHomePage.getHomePageData(videoResVideoHttpResponse);
+                    }
+
+                    @Override
+                    public void onError(Throwable t) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+    }
+
+
+    public interface GetHomePage{
+        void getHomePageData(VideoHttpResponse<VideoRes> videoResVideoHttpResponse);
     }
 }
