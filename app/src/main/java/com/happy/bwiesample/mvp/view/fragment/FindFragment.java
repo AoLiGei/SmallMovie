@@ -145,11 +145,4 @@ public class FindFragment extends BaseMvpFragment<FindPresenter> implements Find
         });
 
     }
-
-
-
-
-
-
-
 }

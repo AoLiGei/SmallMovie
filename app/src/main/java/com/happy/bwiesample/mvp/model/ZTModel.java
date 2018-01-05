@@ -1,15 +1,15 @@
 package com.happy.bwiesample.mvp.model;
 
-import com.happy.bwiesample.entry.RecommendBean;
 import com.happy.bwiesample.entry.VideoHttpResponse;
 import com.happy.bwiesample.entry.VideoRes;
-import com.happy.bwiesample.entry.VideoType;
 import com.happy.bwiesample.helper.RetrofitHelper;
 import com.happy.bwiesample.http.IVideo;
 
 import javax.inject.Inject;
 
-import io.reactivex.Flowable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
+import io.reactivex.subscribers.DisposableSubscriber;
 
 /**
  * @Describtion
@@ -27,7 +27,28 @@ public class ZTModel {
 
     }
 
-    public Flowable<VideoHttpResponse<VideoRes>>getTypeData(){
-        return helper.getVideoNetClass(IVideo.class).getHomePage();
+    public void getTypeData(final GetTypeData getTypeData){
+      helper.getVideoNetClass(IVideo.class).getHomePage().subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableSubscriber<VideoHttpResponse<VideoRes>>() {
+                    @Override
+                    public void onNext(VideoHttpResponse<VideoRes> videoResVideoHttpResponse) {
+                        getTypeData.getTypeData(videoResVideoHttpResponse);
+                    }
+
+                    @Override
+                    public void onError(Throwable t) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });;
+    }
+
+    public interface GetTypeData{
+        void getTypeData(VideoHttpResponse<VideoRes> videoResVideoHttpResponse);
     }
 }

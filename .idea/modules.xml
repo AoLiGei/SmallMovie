@@ -5,7 +5,6 @@
       <module fileurl="file://$PROJECT_DIR$/SmallMovie.iml" filepath="$PROJECT_DIR$/SmallMovie.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/common/common.iml" filepath="$PROJECT_DIR$/common/common.iml" />
-      <module fileurl="file://E:\MyTeamProject\SmallMovie\common\common.iml" filepath="E:\MyTeamProject\SmallMovie\common\common.iml" />
       <module fileurl="file://$PROJECT_DIR$/commonwidget/commonwidget.iml" filepath="$PROJECT_DIR$/commonwidget/commonwidget.iml" />
       <module fileurl="file://$PROJECT_DIR$/panowidget/panowidget.iml" filepath="$PROJECT_DIR$/panowidget/panowidget.iml" />
       <module fileurl="file://$PROJECT_DIR$/videowidget/videowidget.iml" filepath="$PROJECT_DIR$/videowidget/videowidget.iml" />
