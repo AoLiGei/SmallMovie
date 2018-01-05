@@ -20,8 +20,6 @@ public class MyApp extends Application {
 
     private AppComponent appComponent;
     private static MyApp sApplication;
-
-
     @Override
     public void onCreate() {
         super.onCreate();
@@ -36,7 +34,6 @@ public class MyApp extends Application {
         try {
             //以下都不是必须的，根据需要自行选择,一般来说只需要 debug,缓存相关,cookie相关的 就可以了
             OkGo.getInstance()
-
                     // 打开该调试开关,打印级别INFO,并不是异常,是为了显眼,不需要就不要加入该行
                     // 最后的true表示是否打印okgo的内部异常，一般打开方便调试错误
                     .debug("OkGo", Level.INFO, true)

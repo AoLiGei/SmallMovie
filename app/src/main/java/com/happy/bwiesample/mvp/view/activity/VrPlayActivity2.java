@@ -57,17 +57,10 @@ public class VrPlayActivity2 extends BaseActivity {
         tv_title = findViewById(R.id.vrplay_title);
         mVrVideoView=findViewById(R.id.vr_play_video);
         mSeekBar = findViewById(R.id.vr_play_video_bar);
-
-
-
-
-
         //隐藏VR效果左下角的信息按钮显示
         mVrVideoView.setInfoButtonEnabled(false);
         //切换VR的模式   参数:VrVideoView.DisplayMode.FULLSCREEN_STEREO:设备模式(手机横着放试试)      VrVideoView.DisplayMode..FULLSCREEN_MONO手机模式
         mVrVideoView.setDisplayMode(VrVideoView.DisplayMode.FULLSCREEN_STEREO );
-
-
         iv_return.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -145,7 +138,7 @@ public class VrPlayActivity2 extends BaseActivity {
             try {
                 //提示:视频加载的方法还做了把视频读取到内存中的操作,所以它有一个矛盾,调用该方法是放在主线程还是子线程(一般我们放在子线程)
                 //使用VR控件对象,从资产目录加载视频数据,显示效果 参数: 1.String对象 2.VrVideoView.Options对象,决定显示效果
-                mVrVideoView.loadVideo(Uri.parse(mBean.getResUrl()), options);//不要管他在爆红,就在子线程里执行
+                mVrVideoView.loadVideo(Uri.parse("http://dl.mojing.cn/xianchang/160705/1467684547_37_3840HD.mp4"), options);//不要管他在爆红,就在子线程里执行
                 //使用VR控件对象,从网络加载视频数据,显示效果(要加网络权限)   参数:   1.视频网址,String对象
 //              vr_video.loadVideo(Uri.parse("http://youkesvideo.oss-cn-hangzhou.aliyuncs.com/movie2/2016/10/11/%E6%B9%84%E5%85%AC%E6%B2%B3%E8%A1%8C%E5%8A%A8.Operation.Mekong.2016.TC720P.X264.AAC.Mandarin.CHS.Mp4Ba.mp4"), options);
             } catch (IOException e) {
